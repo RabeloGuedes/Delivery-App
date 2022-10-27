@@ -1,8 +1,12 @@
 const express = require('express');
 
-const app = express();
+const routeRegister = require('../routes/Register');
+const routeLogin = require('../routes/Login');
 
-app.get('/coffee', (_req, res) => res.status(418).end());
-// teste
+const app = express();
+app.use(express.json());
+
+app.use('/login', routeLogin);
+app.use('/register', routeRegister);
 
 module.exports = app;
