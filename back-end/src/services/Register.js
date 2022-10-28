@@ -1,8 +1,13 @@
 const { User } = require('../database/models');
+const crypto = require('crypto');
 
 const registerService = async ({ name, email, password, role }) => {
-  const createUser = await User.create({ name, email, password, role });
-  console.log(createUser, 'console da funcao');
+  const validPassword = crypto.createHash('sha256').update(password).digest('hex')
+  const createUser = await User.create({ 
+    name, 
+    email, 
+    password: validPassword, 
+    role });
   return createUser;
 };
 
