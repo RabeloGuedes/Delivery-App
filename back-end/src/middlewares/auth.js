@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'suaSenhaSecreta';
+const JWT_SECRET = process.env.JWT_SECRET || 'qualquercoisa';
 
 const JWT_CONFIG = {
   expiresIn: '1d',
