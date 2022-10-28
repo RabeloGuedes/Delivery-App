@@ -1,6 +1,12 @@
 const crypto = require('crypto');
 const { User } = require('../database/models');
 
+const verifyUserRegister = async (name, email) => {
+  const getUserById = await User.findOne({ where: { name, email } });
+
+  return getUserById;
+};
+
 const registerService = async ({ name, email, password, role }) => {
   const validPassword = crypto.createHash('sha256').update(password).digest('hex');
   const createUser = await User.create({ 
@@ -11,4 +17,4 @@ const registerService = async ({ name, email, password, role }) => {
   return createUser;
 };
 
-module.exports = registerService;
+module.exports =  { verifyUserRegister, registerService };

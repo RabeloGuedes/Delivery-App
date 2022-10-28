@@ -24,13 +24,13 @@ const verifyEmail = async (req, res, next) => {
   next();
 };
 
-const verifyName = async(req, res, next) => {
+const verifyName = async (req, res, next) => {
   const { name } = req.body;
 
   if (name.length < 12) {
     return res.status(400).json({ message: '"name" length must be at least 12 characters long' });
   }
   next();
-}
+};
 
 module.exports = { verifyPassword, verifyEmail, verifyName };
