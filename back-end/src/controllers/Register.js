@@ -13,11 +13,11 @@ const registerController = async (req, res) => {
 
   if (verifyNameEmail.name === name) {
     return res.status(409).json({ message: 'Name already registered' });
-  };
+  }
 
   if (verifyNameEmail.email === email) {
     return res.status(409).json({ message: 'Email already registered' });
-  };
+  }
   
   const newUser = await registerService({ name, email, password, role: 'customer' });
   const token = generateToken({ email, role: newUser.role });

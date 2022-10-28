@@ -17,4 +17,4 @@ const registerService = async ({ name, email, password, role }) => {
   return createUser;
 };
 
-module.exports =  { verifyUserRegister, registerService };
+module.exports = { verifyUserRegister, registerService };
