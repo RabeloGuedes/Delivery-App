@@ -1,5 +1,3 @@
-const loginService = require('../services/Login');
-
 const verifyPassword = async (req, res, next) => {
   const { password } = req.body;
 
