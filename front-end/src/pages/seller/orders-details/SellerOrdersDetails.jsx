@@ -4,7 +4,7 @@
 // import { ShoppingCart, MagnifyingGlass } from 'phosphor-react';
 // import './style.css';
 
-export default function ClientOrders() {
+export default function SellerOrdersDetails() {
   return (
     <div />
   );

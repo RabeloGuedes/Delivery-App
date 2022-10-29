@@ -5,11 +5,7 @@
 // import './style.css';
 
 export default function ClientOrdersDetails() {
-
   return (
-    <div>
-
-    </div>
+    <div />
   );
 }
- 

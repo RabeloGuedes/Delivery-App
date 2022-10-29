@@ -1,18 +1,17 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import login from '../../services/APIs';
+import MainContext from '../../context/MainContext';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+  } = useContext(MainContext);
 
   const toLogin = async (e) => {
     e.preventDefault();
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    setEmail(emailInput.value);
-    setPassword(passwordInput.value);
-    console.log(email, 'email');
-    console.log(password, 'senha');
     try {
       const user = await login(email, password);
       console.log(user);
@@ -30,14 +29,20 @@ export default function Login() {
             type="email"
             placeholder="your@email.com"
             autoComplete="off"
+            onChange={ ({ target }) => setEmail(target.value) }
+            value={ email }
+            data-testid="common_login__input-email"
           />
         </label>
         <label htmlFor="password">
           <input
             id="password"
             type="password"
-            placeholder="******"
+            placeholder="**"
             autoComplete="off"
+            onChange={ ({ target }) => setPassword(target.value) }
+            value={ password }
+            data-testid="common_login__input-password"
           />
         </label>
         <button type="submit">Entrar</button>
