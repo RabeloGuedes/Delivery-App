@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import { useNavigation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import login from '../../services/APIs';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigation();
+  const navigate = useNavigate();
 
   const toLogin = async (e) => {
     e.preventDefault();
     try {
-      const user = await login(email, password);
-      console.log(user);
+      await login(email, password);
+      navigate('/customer/products');
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +54,7 @@ export default function Login() {
         </button>
         <button
           type="button"
-          data-testid="common_login__button-login"
+          data-testid="common_login__button-register"
           onClick={ goToRegistration }
         >
           Ainda não tenho conta
