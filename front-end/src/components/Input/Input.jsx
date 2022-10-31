@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import './Input.css';
 
 export default function Input({
+  name,
   className,
   type,
   placeholder,
@@ -13,6 +14,7 @@ export default function Input({
   return (
     <label htmlFor={ type }>
       <input
+        name={ name }
         className={ className }
         id={ type }
         type={ type }
@@ -30,6 +32,7 @@ export default function Input({
 }
 
 Input.propTypes = {
+  name: PropTypes.string,
   className: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,

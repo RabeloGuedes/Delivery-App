@@ -7,7 +7,7 @@ const apiBase = axios.create({
 const login = (email, password) => apiBase.post('/login', { email, password });
 
 const create = ({ name, email, password }) => (
-  apiBase.post('/register', { name, email, password })
+  axios('/register', JSON.stringify({ name, email, password }))
 );
 
 export { login, create };
