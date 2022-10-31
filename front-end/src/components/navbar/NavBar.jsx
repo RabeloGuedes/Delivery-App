@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 // import { useNavigate, useLocation } from 'react-router-dom';
 import MainContext from '../../context/MainContext';
 
 import './NavBar.css';
 
 export default function NavBar() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const {
     email,
   } = useContext(MainContext);
