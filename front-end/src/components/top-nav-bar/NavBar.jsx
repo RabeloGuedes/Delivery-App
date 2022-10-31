@@ -2,10 +2,9 @@ import React, { useContext } from 'react';
 // import { useNavigate, useLocation } from 'react-router-dom';
 import MainContext from '../../context/MainContext';
 
-// import { ShoppingCart, MagnifyingGlass } from 'phosphor-react';
-import './TopNavBar.css';
+import './NavBar.css';
 
-export default function TopNavBar() {
+export default function NavBar() {
   const {
     email,
   } = useContext(MainContext);
