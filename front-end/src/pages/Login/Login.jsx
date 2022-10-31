@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import login from '../../services/APIs';
+import { login } from '../../services/APIs';
 import Input from '../../components/Input/Input';
 import MainContext from '../../context/MainContext';
 
