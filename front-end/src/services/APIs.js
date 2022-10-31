@@ -6,4 +6,8 @@ const apiBase = axios.create({
 
 const login = (email, password) => apiBase.post('/login', { email, password });
 
-export default login;
+const create = ({ name, email, password }) => (
+  apiBase.post('/register', { name, email, password })
+);
+
+export { login, create };
