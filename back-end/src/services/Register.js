@@ -8,7 +8,7 @@ const verifyUserRegister = async (name, email) => {
 };
 
 const registerService = async ({ name, email, password, role }) => {
-  const validPassword = crypto.createHash('sha256').update(password).digest('hex');
+  const validPassword = crypto.createHash('md5').update(password).digest('hex');
   const createUser = await User.create({ 
     name, 
     email, 

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import MainContext from '../../context/MainContext';
-import './NavBar.css';
 
 export default function NavBar() {
   const {

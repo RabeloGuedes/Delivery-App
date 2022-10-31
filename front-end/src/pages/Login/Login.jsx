@@ -17,7 +17,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const emailRegex = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     setIsLoginButtonDisabled(() => (
       !emailRegex.test(loginValues.email)
       || loginValues.password.length < SIX
