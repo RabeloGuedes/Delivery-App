@@ -1,14 +1,10 @@
 import React, { useContext } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { useNavigate, useLocation } from 'react-router-dom';
 import MainContext from '../../context/MainContext';
-
 import './NavBar.css';
 
 export default function NavBar() {
-  // const navigate = useNavigate();
   const {
-    email,
+    user,
   } = useContext(MainContext);
   return (
     <div>
@@ -17,10 +13,9 @@ export default function NavBar() {
         <div className="button">MEUS PEDIDOS</div>
       </div>
       <div className="right">
-        <h1>{ email }</h1>
+        <h1>{ user }</h1>
         <div
           className="button"
-          // onClick={ () => navigate('/') }
         >
           sair
         </div>
