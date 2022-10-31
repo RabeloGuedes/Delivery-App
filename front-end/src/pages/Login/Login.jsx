@@ -1,16 +1,53 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import login from '../../services/APIs';
+import Input from '../../components/Input/Input';
+
+const SIX = 6;
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [loginValues, setLoginValues] = useState({
+    email: '',
+    password: '',
+  });
+  const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    setIsLoginButtonDisabled(() => (
+      !emailRegex.test(loginValues.email)
+      || loginValues.password.length < SIX
+    ));
+  }, [loginValues]);
+
+  const inputs = [
+    {
+      id: 1,
+      className: 'login-input',
+      type: 'email',
+      placeholder: 'your@email.com',
+      dataTestid: 'common_login__input-email',
+      errorMessage: 'Email inválido',
+      errorTestId: 'common_login__element-invalid-email',
+      required: true,
+    },
+    {
+      id: 2,
+      className: 'login-input',
+      type: 'password',
+      placeholder: '******',
+      dataTestid: 'common_login__input-password',
+      errorMessage: 'Senha inválida',
+      errorTestId: 'common_login__element-invalid-password',
+      required: true,
+    },
+  ];
 
   const toLogin = async (e) => {
     e.preventDefault();
     try {
-      await login(email, password);
+      await login(loginValues.email, loginValues.password);
       navigate('/customer/products');
     } catch (error) {
       console.log(error);
@@ -21,34 +58,28 @@ export default function Login() {
     navigate('/registre');
   };
 
+  const onChange = ({ target }) => {
+    setLoginValues((prevState) => ({
+      ...prevState,
+      [target.type]: target.value,
+    }));
+  };
+
   return (
     <section>
       <form onSubmit={ (e) => toLogin(e) }>
-        <label htmlFor="email">
-          <input
-            id="email"
-            type="email"
-            placeholder="your@email.com"
-            autoComplete="off"
-            onChange={ ({ target }) => setEmail(target.value) }
-            value={ email }
-            data-testid="common_login__input-email"
+        { inputs.map((input) => (
+          <Input
+            key={ input.id }
+            { ...input }
+            value={ loginValues[input.type] }
+            onChange={ (e) => onChange(e) }
           />
-        </label>
-        <label htmlFor="password">
-          <input
-            id="password"
-            type="password"
-            placeholder="******"
-            autoComplete="off"
-            onChange={ ({ target }) => setPassword(target.value) }
-            value={ password }
-            data-testid="common_login__input-password"
-          />
-        </label>
+        ))}
         <button
           type="submit"
           data-testid="common_login__button-login"
+          disabled={ isLoginButtonDisabled }
         >
           Entrar
         </button>
