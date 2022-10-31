@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import login from '../../services/APIs';
 import Input from '../../components/Input/Input';
+import MainContext from '../../context/MainContext';
 
 const SIX = 6;
 
@@ -11,6 +12,8 @@ export default function Login() {
     password: '',
   });
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
+  const { setUser } = useContext(MainContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,7 +50,8 @@ export default function Login() {
   const toLogin = async (e) => {
     e.preventDefault();
     try {
-      await login(loginValues.email, loginValues.password);
+      const { data: { name } } = await login(loginValues.email, loginValues.password);
+      setUser(name);
       navigate('/customer/products');
     } catch (error) {
       console.log(error);
