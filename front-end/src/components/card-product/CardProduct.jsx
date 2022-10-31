@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-// import { useNavigate, useLocation } from 'react-router-dom';
 import MainContext from '../../context/MainContext';
 
-import './NavBar.css';
+import './CardProduct.css';
 
-export default function NavBar() {
+export default function CardProduct() {
   const {
     email,
   } = useContext(MainContext);
