@@ -59,7 +59,7 @@ export default function Login() {
   };
 
   const goToRegistration = () => {
-    navigate('/registre');
+    navigate('/register');
   };
 
   const onChange = ({ target }) => {
