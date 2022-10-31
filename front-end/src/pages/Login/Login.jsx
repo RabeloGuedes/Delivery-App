@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import login from '../../services/APIs';
 import MainContext from '../../context/MainContext';
 
@@ -9,15 +10,21 @@ export default function Login() {
     password,
     setPassword,
   } = useContext(MainContext);
+ 
+  const navigate = useNavigate();
 
   const toLogin = async (e) => {
     e.preventDefault();
     try {
-      const user = await login(email, password);
-      console.log(user);
+      await login(email, password);
+      navigate('/customer/products');
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const goToRegistration = () => {
+    navigate('/registre');
   };
 
   return (
@@ -45,7 +52,19 @@ export default function Login() {
             data-testid="common_login__input-password"
           />
         </label>
-        <button type="submit">Entrar</button>
+        <button
+          type="submit"
+          data-testid="common_login__button-login"
+        >
+          Entrar
+        </button>
+        <button
+          type="button"
+          data-testid="common_login__button-register"
+          onClick={ goToRegistration }
+        >
+          Ainda não tenho conta
+        </button>
       </form>
     </section>
   );
