@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import login from '../../services/APIs';
+import MainContext from '../../context/MainContext';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+  } = useContext(MainContext);
+ 
   const navigate = useNavigate();
 
   const toLogin = async (e) => {
@@ -39,7 +45,7 @@ export default function Login() {
           <input
             id="password"
             type="password"
-            placeholder="******"
+            placeholder="**"
             autoComplete="off"
             onChange={ ({ target }) => setPassword(target.value) }
             value={ password }
