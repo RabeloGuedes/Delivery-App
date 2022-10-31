@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import MainContext from '../../context/MainContext';
 
-import './CardProduct.css';
-
 export default function CardProduct() {
   const {
     email,

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import MainContext from '../context/MainContext';
 
 function MainProvider({ children }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState('');
 
   // const [selectedListItems, setSelectedListItems] = useState('');
   // const [searchItem, setSearchItem] = useState('');
@@ -52,8 +51,8 @@ function MainProvider({ children }) {
   // setCartItem(cartItems.filter((cartItem) => cartItem.itemProduct.id !== item.itemProduct.id));
   // };
   const value = useMemo(() => ({
-    email, setEmail, password, setPassword,
-  }), [email, password]);
+    user, setUser,
+  }), [user]);
 
   return (
     <MainContext.Provider value={ value }>

@@ -1,63 +1,99 @@
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import login from '../../services/APIs';
+import Input from '../../components/Input/Input';
 import MainContext from '../../context/MainContext';
 
+const SIX = 6;
+
 export default function Login() {
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-  } = useContext(MainContext);
- 
+  const [loginValues, setLoginValues] = useState({
+    email: '',
+    password: '',
+  });
+  const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
+  const [invalidEmail, setInvalidEmail] = useState(false);
+  const { setUser } = useContext(MainContext);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const emailRegex = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+    setIsLoginButtonDisabled(() => (
+      !emailRegex.test(loginValues.email)
+      || loginValues.password.length < SIX
+    ));
+  }, [loginValues]);
+
+  const inputs = [
+    {
+      id: 1,
+      className: 'login-input',
+      type: 'email',
+      placeholder: 'your@email.com',
+      dataTestid: 'common_login__input-email',
+      required: true,
+    },
+    {
+      id: 2,
+      className: 'login-input',
+      type: 'password',
+      placeholder: '******',
+      dataTestid: 'common_login__input-password',
+      required: true,
+    },
+  ];
 
   const toLogin = async (e) => {
     e.preventDefault();
     try {
-      await login(email, password);
+      const { data: { name } } = await login(loginValues.email, loginValues.password);
+      setUser(name);
       navigate('/customer/products');
-    } catch (error) {
-      console.log(error);
+    } catch ({ message }) {
+      if (message.includes('404')) {
+        setInvalidEmail(true);
+      }
     }
   };
 
   const goToRegistration = () => {
-    navigate('/registre');
+    navigate('/register');
+  };
+
+  const onChange = ({ target }) => {
+    setLoginValues((prevState) => ({
+      ...prevState,
+      [target.type]: target.value,
+    }));
   };
 
   return (
     <section>
       <form onSubmit={ (e) => toLogin(e) }>
-        <label htmlFor="email">
-          <input
-            id="email"
-            type="email"
-            placeholder="your@email.com"
-            autoComplete="off"
-            onChange={ ({ target }) => setEmail(target.value) }
-            value={ email }
-            data-testid="common_login__input-email"
+        { inputs.map((input) => (
+          <Input
+            key={ input.id }
+            { ...input }
+            value={ loginValues[input.type] }
+            onChange={ (e) => onChange(e) }
           />
-        </label>
-        <label htmlFor="password">
-          <input
-            id="password"
-            type="password"
-            placeholder="**"
-            autoComplete="off"
-            onChange={ ({ target }) => setPassword(target.value) }
-            value={ password }
-            data-testid="common_login__input-password"
-          />
-        </label>
+        ))}
         <button
           type="submit"
           data-testid="common_login__button-login"
+          disabled={ isLoginButtonDisabled }
         >
           Entrar
         </button>
+        {
+          invalidEmail
+            && (
+              <span data-testid="common_login__element-invalid-email">
+                Incorrect Email or Password!
+              </span>
+            )
+        }
         <button
           type="button"
           data-testid="common_login__button-register"
