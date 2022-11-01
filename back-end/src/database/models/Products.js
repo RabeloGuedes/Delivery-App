@@ -15,7 +15,7 @@ const Product = (sequelize, DataTypes) => {
       tableName: 'products',
     }
   );
-  
+
   return Product;
 }
   
