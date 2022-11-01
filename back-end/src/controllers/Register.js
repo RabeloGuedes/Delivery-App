@@ -9,13 +9,13 @@ const verifyRegister = async (name, email) => {
 
 const registerController = async (req, res) => {
   const { name, email, password } = req.body;
-  const verifyNameEmail = verifyRegister(name, email);
+  const verifyNameEmail = await verifyRegister(name, email);
 
-  if (verifyNameEmail.name === name) {
+  if (verifyNameEmail?.name === name) {
     return res.status(409).json({ message: 'Name already registered' });
   }
 
-  if (verifyNameEmail.email === email) {
+  if (verifyNameEmail?.email === email) {
     return res.status(409).json({ message: 'Email already registered' });
   }
   
