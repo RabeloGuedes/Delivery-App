@@ -7,9 +7,9 @@ const JWT_CONFIG = {
   algorithm: 'HS256',
 };
 
-const generateToken = ({ email, role }) => {
+const generateToken = (payload) => {
   const token = jwt.sign(
-    { data: { email, role } },
+    { email: payload.email, role: payload.role },
     JWT_SECRET,
     JWT_CONFIG,
   );
