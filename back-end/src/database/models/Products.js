@@ -1,5 +1,5 @@
 const Product = (sequelize, DataTypes) => {
-  const User = sequelize.define("Product", {
+  const Product = sequelize.define("Product", {
     id: {
       allowNull: false,
       type: DataTypes.INTEGER,
