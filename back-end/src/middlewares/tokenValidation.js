@@ -10,7 +10,7 @@ if (!token) {
 }
 
 try {
-  const { data: { email } } = jwt.verify(token, SECRET);
+  const { email } = jwt.verify(token, SECRET);
   req.user = email;
 
   next();
