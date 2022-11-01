@@ -12,12 +12,13 @@ export default function Login() {
     password: '',
   });
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
+  const [invalidEmail, setInvalidEmail] = useState(false);
   const { setUser } = useContext(MainContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const emailRegex = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     setIsLoginButtonDisabled(() => (
       !emailRegex.test(loginValues.email)
       || loginValues.password.length < SIX
@@ -31,8 +32,6 @@ export default function Login() {
       type: 'email',
       placeholder: 'your@email.com',
       dataTestid: 'common_login__input-email',
-      errorMessage: 'Email inválido',
-      errorTestId: 'common_login__element-invalid-email',
       required: true,
     },
     {
@@ -41,8 +40,6 @@ export default function Login() {
       type: 'password',
       placeholder: '******',
       dataTestid: 'common_login__input-password',
-      errorMessage: 'Senha inválida',
-      errorTestId: 'common_login__element-invalid-password',
       required: true,
     },
   ];
@@ -53,8 +50,10 @@ export default function Login() {
       const { data: { name } } = await login(loginValues.email, loginValues.password);
       setUser(name);
       navigate('/customer/products');
-    } catch (error) {
-      console.log(error);
+    } catch ({ message }) {
+      if (message.includes('404')) {
+        setInvalidEmail(true);
+      }
     }
   };
 
@@ -87,6 +86,14 @@ export default function Login() {
         >
           Entrar
         </button>
+        {
+          invalidEmail
+            && (
+              <span data-testid="common_login__element-invalid-email">
+                Incorrect Email or Password!
+              </span>
+            )
+        }
         <button
           type="button"
           data-testid="common_login__button-register"
