@@ -13,7 +13,7 @@ const verifyPassword = async (req, res, next) => {
 const verifyEmail = async (req, res, next) => {
   const { email } = req.body;
 
-  const validEmail = /^\w+(\[\+\.-\]?\w)*@\w+(\[\.-\]?\w+)*\.[a-z]+$/i;
+  const validEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
   if (!validEmail.test(email)) {
     return res
