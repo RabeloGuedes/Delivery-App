@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../components/Input/Input';
 import { create } from '../../services/APIs';
+
+const SIX = 6;
+const TWELVE = 12;
 
 export default function Register() {
   const [registerValues, setRegisterValues] = useState({
@@ -8,6 +12,18 @@ export default function Register() {
     email: '',
     password: '',
   });
+  const [invalidRegisterValues, setInvalidRegisterValues] = useState(false);
+  const [isRegisterButtonDisabled, setIsRegisterButtonDisabled] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    setIsRegisterButtonDisabled(() => (
+      !emailRegex.test(registerValues.email)
+      || registerValues.password.length < SIX
+      || registerValues.name.length < TWELVE
+    ));
+  }, [registerValues]);
 
   const onChange = ({ target }) => {
     setRegisterValues((prevState) => ({
@@ -19,9 +35,11 @@ export default function Register() {
   const toRegister = async (e) => {
     e.preventDefault();
     try {
-      console.log(await create(registerValues));
+      await create({ ...registerValues });
+      navigate('/customer/products');
     } catch (error) {
       console.log(error);
+      setInvalidRegisterValues(true);
     }
   };
 
@@ -31,7 +49,7 @@ export default function Register() {
       name: 'name',
       type: 'text',
       placeholder: 'John Doe',
-      dataTestId: 'common_register__input-name',
+      dataTestid: 'common_register__input-name',
       required: true,
     },
     {
@@ -39,7 +57,7 @@ export default function Register() {
       name: 'email',
       type: 'email',
       placeholder: 'Johndoe@email.com',
-      dataTestId: 'common_register__input-email',
+      dataTestid: 'common_register__input-email',
       required: true,
     },
     {
@@ -47,7 +65,7 @@ export default function Register() {
       name: 'password',
       type: 'password',
       placeholder: '******',
-      dataTestId: 'common_register__input-password',
+      dataTestid: 'common_register__input-password',
       required: true,
     },
   ];
@@ -67,9 +85,21 @@ export default function Register() {
         }
         <button
           type="submit"
+          data-testid="common_register__button-register"
+          disabled={ isRegisterButtonDisabled }
         >
           CADASTRAR
         </button>
+        {
+          invalidRegisterValues
+          && (
+            <span
+              data-testid="common_register__element-invalid_register"
+            >
+              Invalid data!
+            </span>
+          )
+        }
       </form>
     </section>
   );
