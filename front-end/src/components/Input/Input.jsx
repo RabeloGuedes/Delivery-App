@@ -8,8 +8,6 @@ export default function Input({
   placeholder,
   dataTestid,
   onChange,
-  errorMessage,
-  errorTestId,
 }) {
   return (
     <label htmlFor={ type }>
@@ -22,11 +20,6 @@ export default function Input({
         data-testid={ dataTestid }
         onChange={ onChange }
       />
-      <span
-        data-testid={ errorTestId }
-      >
-        { errorMessage }
-      </span>
     </label>
   );
 }
@@ -38,6 +31,4 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   dataTestid: PropTypes.string,
   onChange: PropTypes.func,
-  errorMessage: PropTypes.string,
-  erroTestid: PropTypes.string,
 }.isRequired;
