@@ -4,6 +4,40 @@ import MainContext from '../context/MainContext';
 
 function MainProvider({ children }) {
   const [user, setUser] = useState('');
+  const [products, setProducts] = useState([
+    {
+      id: 1,
+      name: 'Product 1',
+      price: 100,
+    },
+    {
+      id: 2,
+      name: 'Product 2',
+      price: 200,
+    },
+    {
+      id: 3,
+      name: 'Product 3',
+      price: 300,
+    },
+  ]);
+  const [orders, setOrders] = useState([
+    {
+      id: 1,
+      name: 'Product 1',
+      price: 100,
+    },
+    {
+      id: 2,
+      name: 'Product 2',
+      price: 200,
+    },
+    {
+      id: 3,
+      name: 'Product 3',
+      price: 300,
+    },
+  ]);
 
   // const [selectedListItems, setSelectedListItems] = useState('');
   // const [searchItem, setSearchItem] = useState('');
@@ -51,8 +85,13 @@ function MainProvider({ children }) {
   // setCartItem(cartItems.filter((cartItem) => cartItem.itemProduct.id !== item.itemProduct.id));
   // };
   const value = useMemo(() => ({
-    user, setUser,
-  }), [user]);
+    user,
+    setUser,
+    products,
+    setProducts,
+    orders,
+    setOrders,
+  }), [user, products, orders]);
 
   return (
     <MainContext.Provider value={ value }>
