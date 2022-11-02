@@ -5,17 +5,18 @@ import CheckoutProduct from '../../components/checkout-product/CheckoutProduct';
 export default function Checkout() {
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
 
-  const totalPrice = cart.reduce((acc, curr) => acc + curr.subTotal, 0);
+  const totalPrice = cart.reduce((acc, curr) => Number(acc) + Number(curr.subTotal), 0);
 
   return (
     <section>
       <Navbar />
       {
-        cart.map((item) => (
+        cart.map((item, index) => (
           <CheckoutProduct
             setCart={ setCart }
             { ...item }
             key={ item.id }
+            index={ index }
           />
         ))
       }
@@ -23,7 +24,7 @@ export default function Checkout() {
         data-testid="customer_checkout__element-order-total-price"
       >
         {
-          (totalPrice).toFixed(2)
+          totalPrice.toFixed(2).replace('.', ',')
         }
       </h3>
       <select
