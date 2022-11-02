@@ -45,18 +45,19 @@ export default function Products() {
       <div className="">
         { populateProducts(products, setCart) }
       </div>
-      <h3
-        data-testid="customer_products__checkout-bottom-value"
-      >
-        {
-          (Number(totalPrice)).toFixed(2)
-        }
-      </h3>
       <button
         type="button"
         onClick={ () => navigate('/customer/checkout') }
+        disabled={ cart.length === 0 }
+        data-testid="customer_products__button-cart"
       >
-        checkout
+        <h3
+          data-testid="customer_products__checkout-bottom-value"
+        >
+          {
+            (Number(totalPrice)).toFixed(2).replace('.', ',')
+          }
+        </h3>
       </button>
     </div>
   );
