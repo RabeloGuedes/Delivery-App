@@ -31,7 +31,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNul: false,
       },
-      delivery: {
+      delivery_number: {
         type: Sequelize.STRING,
         allowNul: false,
       },

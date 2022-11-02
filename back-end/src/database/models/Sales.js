@@ -18,7 +18,7 @@ const Sale = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNul: false,
     },
-    delivery: {
+    delivery_number: {
       type: DataTypes.STRING,
       allowNul: false,
     },
