@@ -14,13 +14,17 @@ const Sale = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    total_price: {
+      type: DataTypes.NUMBER,
+      allowNull: false,
+    },
     delivery_address: {
       type: DataTypes.STRING,
-      allowNul: false,
+      allowNull: false,
     },
     delivery_number: {
       type: DataTypes.STRING,
-      allowNul: false,
+      allowNull: false,
     },
     sale_date: {
       type: DataTypes.DATE,

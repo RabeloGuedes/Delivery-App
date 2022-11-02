@@ -20,20 +20,24 @@ module.exports = {
       },
       seller_id: {
         type: Sequelize.INTEGER,
-        allowNul: false,
+        allowNull: false,
         field: 'seller_id',
         references: {
           model: 'users',
           key: 'id',
         },
       },
+      total_price: {
+        type: Sequelize.DECIMAL(9,2),
+        allowNull: false,
+      },
       delivery_address: {
         type: Sequelize.STRING,
-        allowNul: false,
+        allowNull: false,
       },
       delivery_number: {
         type: Sequelize.STRING,
-        allowNul: false,
+        allowNull: false,
       },
       sale_date: {
         type: Sequelize.DATE,
