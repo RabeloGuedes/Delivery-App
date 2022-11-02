@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/navbar/NavBar';
 import CardProduct from '../../components/card-product/CardProduct';
 import MainContext from '../../context/MainContext';
@@ -22,6 +23,7 @@ export default function Products() {
     products,
     setProducts,
   } = useContext(MainContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getitems() {
@@ -38,12 +40,13 @@ export default function Products() {
       <div className="">
         { populateProducts(products) }
       </div>
-      <p
+      <button
         data-testid="customer_products__checkout-bottom-value"
         type="button"
+        onClick={ () => navigate('/customer/checkout') }
       >
         checkout
-      </p>
+      </button>
     </div>
   );
 }
