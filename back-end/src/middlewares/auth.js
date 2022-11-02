@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'qualquercoisa';
+const jwtKey = require('fs')
+  .readFileSync('jwt.evaluation.key', { encoding: 'utf-8' });
+
+const JWT_SECRET = jwtKey;
 
 const JWT_CONFIG = {
   expiresIn: '1d',
