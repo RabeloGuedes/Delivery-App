@@ -1,17 +1,19 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MainContext from '../../context/MainContext';
 
 export default function NavBar() {
+  const navigate = useNavigate();
   const {
     user,
   } = useContext(MainContext);
+
   return (
     <nav>
       <div className="nav-left">
         <div
           className="nav-button"
-          datatestid="customer_products__element-navbar-link-products"
+          data-testid="customer_products__element-navbar-link-products"
         >
           <Link to="/customer/products">
             PRODUTOS
@@ -19,7 +21,7 @@ export default function NavBar() {
         </div>
         <div
           className="nav-button"
-          datatestid="customer_products__element-navbar-link-orders"
+          data-testid="customer_products__element-navbar-link-orders"
         >
           <Link to="/customer/products">
             MEUS PEDIDOS
@@ -28,14 +30,18 @@ export default function NavBar() {
       </div>
       <div
         className="nav-right"
-        datatestid="customer_products__element-navbar-user-full-name"
+        data-testid="customer_products__element-navbar-user-full-name"
       >
         <h1>{ user }</h1>
         <button
           type="button"
           className="nav-button"
-          datatestid="customer_products__element-navbar-link-logout"
-          // onClick={ () => localStorage.clear() }
+          data-testid="customer_products__element-navbar-link-logout"
+          onClick={ () => {
+            localStorage.clear();
+            // localStorage.setItem('user', '');
+            navigate('/login');
+          } }
         >
           SAIR
         </button>

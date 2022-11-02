@@ -47,8 +47,9 @@ export default function Login() {
   const toLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data: { name } } = await login(loginValues.email, loginValues.password);
-      setUser(name);
+      const { data } = await login(loginValues.email, loginValues.password);
+      setUser(data.name);
+      localStorage.setItem('user', JSON.stringify({ ...data }));
       navigate('/customer/products');
     } catch ({ message }) {
       if (message.includes('404')) {

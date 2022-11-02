@@ -38,6 +38,12 @@ export default function Products() {
       <div className="">
         { populateProducts(products) }
       </div>
+      <p
+        data-testid="customer_products__checkout-bottom-value"
+        type="button"
+      >
+        checkout
+      </p>
     </div>
   );
 }
