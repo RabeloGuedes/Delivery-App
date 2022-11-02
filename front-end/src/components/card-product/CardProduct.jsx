@@ -33,7 +33,7 @@ export default function CardProduct(props) {
       name: productName,
       price,
       quantity: 1,
-      subTotal: price,
+      subTotal: Number(price),
     };
     if (cart.find((item) => item.id === id)) {
       const newCart = cart.map((item) => {
