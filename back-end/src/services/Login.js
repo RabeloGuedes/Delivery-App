@@ -10,7 +10,6 @@ const loginService = async (email, password) => {
     const token = generateToken({ email, role: getUserById.role });
     return { ...getUserById.dataValues, token };
   }
-
   return getUserById;
 };
 
