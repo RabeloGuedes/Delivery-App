@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export default function CardProduct(props) {
   const [quantity, setQuantity] = useState(0);
-  const { thumbnail, id, productName, price } = props;
+  const { thumbnail, id, productName, price, setCart } = props;
 
   const removeFromCart = () => {
     setQuantity((prev) => {
@@ -17,11 +17,12 @@ export default function CardProduct(props) {
         if (item.id === id && item.quantity > 0) {
           return { ...item,
             quantity: item.quantity - 1,
-            subTotal: (Number(item.subTotal) - Number(price)).toFixed(2) };
+            subTotal: Number((Number(item.subTotal) - Number(price)).toFixed(2)) };
         }
         return item;
       });
       localStorage.setItem('cart', JSON.stringify(newCart));
+      setCart(newCart);
     }
   };
 
@@ -39,14 +40,16 @@ export default function CardProduct(props) {
         if (item.id === id) {
           return { ...item,
             quantity: Number(item.quantity) + 1,
-            subTotal: (Number(item.subTotal) + Number(price)).toFixed(2) };
+            subTotal: Number((Number(item.subTotal) + Number(price)).toFixed(2)) };
         }
         return item;
       });
       localStorage.setItem('cart', JSON.stringify(newCart));
+      setCart(newCart);
     } else {
       cart.push(product);
       localStorage.setItem('cart', JSON.stringify(cart));
+      setCart(cart);
     }
   };
 
@@ -58,12 +61,13 @@ export default function CardProduct(props) {
       name: productName,
       price,
       quantity: target.value,
-      subTotal: price * target.value,
+      subTotal: Number(price) * Number(target.value),
     };
     const isThereItem = cart.some((item) => item.id === id);
     if (isThereItem) {
       const newCart = cart.filter((item) => item.id !== id);
       localStorage.setItem('cart', newCart);
+      setCart(newCart);
     } if (cart.find((item) => item.id === id)) {
       const newCart = cart.map((item) => {
         if (item.id === id) {
@@ -76,9 +80,11 @@ export default function CardProduct(props) {
         return item;
       });
       localStorage.setItem('cart', JSON.stringify(newCart));
+      setCart(newCart);
     } else {
       cart.push(product);
       localStorage.setItem('cart', JSON.stringify(cart));
+      setCart(cart);
     }
   };
 

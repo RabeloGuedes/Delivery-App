@@ -1,11 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../../components/navbar/NavBar';
 import CardProduct from '../../components/card-product/CardProduct';
 import MainContext from '../../context/MainContext';
 import { getAllProducts } from '../../services/APIs';
 
-const populateProducts = (products) => products.map((product) => (
+const populateProducts = (products, setCart) => products.map((product) => (
   <div
     key={ product.id }
   >
@@ -14,6 +14,7 @@ const populateProducts = (products) => products.map((product) => (
       id={ product.id }
       productName={ product.name }
       price={ product.price }
+      setCart={ setCart }
     />
   </div>
 ));
@@ -24,6 +25,10 @@ export default function Products() {
     setProducts,
   } = useContext(MainContext);
   const navigate = useNavigate();
+
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+
+  const totalPrice = cart.reduce((acc, curr) => Number(acc) + Number(curr.subTotal), 0);
 
   useEffect(() => {
     async function getitems() {
@@ -38,10 +43,16 @@ export default function Products() {
     <div>
       <NavBar />
       <div className="">
-        { populateProducts(products) }
+        { populateProducts(products, setCart) }
       </div>
-      <button
+      <h3
         data-testid="customer_products__checkout-bottom-value"
+      >
+        {
+          (Number(totalPrice)).toFixed(2)
+        }
+      </h3>
+      <button
         type="button"
         onClick={ () => navigate('/customer/checkout') }
       >
