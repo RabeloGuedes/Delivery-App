@@ -12,10 +12,6 @@ export default function CardProduct(props) {
       return prev;
     });
     const cart = JSON.parse(localStorage.getItem('cart'));
-    // if (quantity === 1) {
-    //   const newCart = cart.filter((item) => item.id !== id);
-    //   localStorage.setItem('cart', JSON.stringify(newCart));
-    // }
     if (cart.find((item) => item.id === id)) {
       const newCart = cart.map((item) => {
         if (item.id === id && item.quantity > 0) {
@@ -42,8 +38,40 @@ export default function CardProduct(props) {
       const newCart = cart.map((item) => {
         if (item.id === id) {
           return { ...item,
-            quantity: item.quantity + 1,
+            quantity: Number(item.quantity) + 1,
             subTotal: (Number(item.subTotal) + Number(price)).toFixed(2) };
+        }
+        return item;
+      });
+      localStorage.setItem('cart', JSON.stringify(newCart));
+    } else {
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+  };
+
+  const handleQuantity = ({ target }) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    setQuantity(target.value);
+    const product = {
+      id,
+      name: productName,
+      price,
+      quantity: target.value,
+      subTotal: price * target.value,
+    };
+    const isThereItem = cart.some((item) => item.id === id);
+    if (isThereItem) {
+      const newCart = cart.filter((item) => item.id !== id);
+      localStorage.setItem('cart', newCart);
+    } if (cart.find((item) => item.id === id)) {
+      const newCart = cart.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            quantity: target.value,
+            subTotal: Number(item.price) * Number(target.value),
+          };
         }
         return item;
       });
@@ -78,7 +106,7 @@ export default function CardProduct(props) {
         data-testid={ `customer_products__button-card-add-item-${id}` }
         type="button"
         onClick={ () => {
-          setQuantity((prev) => prev + 1);
+          setQuantity((prev) => Number(prev) + 1);
           addToCart();
         } }
       >
@@ -95,6 +123,8 @@ export default function CardProduct(props) {
         data-testid={ `customer_products__input-card-quantity-${id}` }
         type="number"
         value={ quantity }
+        onChange={ (e) => handleQuantity(e) }
+        min={ 0 }
       />
     </div>
   );
