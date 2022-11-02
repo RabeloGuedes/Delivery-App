@@ -7,6 +7,7 @@ export default function CheckoutProduct({
   price,
   subTotal,
   setCart,
+  index,
 }) {
   const removeItem = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
@@ -18,32 +19,32 @@ export default function CheckoutProduct({
   return (
     <div>
       <p
-        data-testid={ `customer_checkout__element-order-table-item-number-${id}` }
+        data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
       >
-        { id }
+        { index + 1 }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-name-${id}` }
+        data-testid={ `customer_checkout__element-order-table-name-${index}` }
       >
         { name }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-quantity-${id}` }
+        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
       >
         { quantity }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-unit-price-${id}` }
+        data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
       >
-        { price }
+        { Number(price).toFixed(2).replace('.', ',') }
       </p>
       <p
-        data-testid={ `customer_checkout__element-order-table-sub-total-${id}` }
+        data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
       >
-        { (subTotal).toFixed(2) }
+        { subTotal.toFixed(2).replace('.', ',') }
       </p>
       <button
-        data-testid={ `customer_checkout__element-order-table-remove-${id}` }
+        data-testid={ `customer_checkout__element-order-table-remove-${index}` }
         type="button"
         onClick={ removeItem }
       >
