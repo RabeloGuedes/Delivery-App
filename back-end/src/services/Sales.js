@@ -2,34 +2,20 @@ const { Sale } = require('../database/models');
 const { SalesProducts, Product } = require('../database/models');
 
 const SalesService = {
-  create: async ({
-    userId,
-    sellerId,
-    totalPrice,
-    deliveryAddress,
-    deliveryNumber,
-    status,
-    cart
-  }) => {
-  
-  const newSale = await Sale.create({
-    userId,
-    sellerId,
-    totalPrice,
-    deliveryAddress,
-    deliveryNumber,
-    status,
-  });
+  create: async (requestdata) => {
+    const newSale = await Sale.create({
+      ...requestdata,
+    });
 
-  cart.forEach(async produto => {
-    await SalesProducts.create({
-      saleId: newSale.id,
-      productId: produto.productId,
-      quantity: produto.quantity,
-    })
-  });
+    requestdata.cart.forEach(async (produto) => {
+      await SalesProducts.create({
+        saleId: newSale.id,
+        productId: produto.productId,
+        quantity: produto.quantity,
+      });
+    });
   
-  return newSale;
+    return newSale;
   },
 
   getAll: async () => {
@@ -44,8 +30,8 @@ const SalesService = {
         {
         model: Product,
         as: 'sale',
-        }
-      ]
+        },
+      ],
     });
     return saleById;
   },

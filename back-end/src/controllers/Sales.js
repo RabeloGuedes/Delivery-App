@@ -14,7 +14,7 @@ const SalesController = {
     const { id } = req.params;
     const sale = await SalesService.getSaleById(id);
     res.status(200).json(sale);
-  }
+  },
 };
 
 module.exports = SalesController;
