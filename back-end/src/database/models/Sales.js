@@ -6,27 +6,27 @@ const Sale = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    seller_id: {
+    sellerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    total_price: {
+    totalPrice: {
       type: DataTypes.NUMBER,
       allowNull: false,
     },
-    delivery_address: {
+    deliveryAddress: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    delivery_number: {
+    deliveryNumber: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    sale_date: {
+    saleDate: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     }
@@ -34,7 +34,7 @@ const Sale = (sequelize, DataTypes) => {
     { 
       timestamps: false,
       tableName: 'sales',
-      underScored: true,
+      // underscored: true,
     }
   );
   

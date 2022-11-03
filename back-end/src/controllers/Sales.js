@@ -9,7 +9,7 @@ const SalesController = {
   getAll: async (_req, res) => {
     const sales = await SalesService.getAll();
     res.status(200).json(sales);
-  }
-}
+  },
+};
 
 module.exports = SalesController;
