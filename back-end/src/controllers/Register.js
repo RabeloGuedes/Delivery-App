@@ -10,7 +10,7 @@ const registerController = async (req, res) => {
     return res.status(status).json({ message });
   }
 
-  const token = generateToken({ email, role: newUser.role });
+  const token = generateToken({ email, role: newUser.role, id: newUser.id });
   return res.status(201).json(token);
 };
 

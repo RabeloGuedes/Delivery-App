@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
 
-const SECRET = process.env.JWT_SECRET || 'suaSenhaSecreta';
+const jwtKey = require('fs')
+  .readFileSync('jwt.evaluation.key', { encoding: 'utf-8' });
+
+const SECRET = jwtKey;
 
 const verifyToken = async (req, res, next) => {
 const token = req.headers.authorization;
@@ -10,8 +13,8 @@ if (!token) {
 }
 
 try {
-  const { email } = jwt.verify(token, SECRET);
-  req.user = email;
+  const { id } = jwt.verify(token, SECRET);
+  req.user = id;
 
   next();
   } catch (err) {

@@ -12,7 +12,7 @@ const JWT_CONFIG = {
 
 const generateToken = (payload) => {
   const token = jwt.sign(
-    { email: payload.email, role: payload.role },
+    { email: payload.email, role: payload.role, id: payload.id },
     JWT_SECRET,
     JWT_CONFIG,
   );
