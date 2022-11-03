@@ -23,7 +23,7 @@ export default function NavBar() {
           className="nav-button"
           data-testid="customer_products__element-navbar-link-orders"
         >
-          <Link to="/customer/products">
+          <Link to="/customer/orders">
             MEUS PEDIDOS
           </Link>
         </div>

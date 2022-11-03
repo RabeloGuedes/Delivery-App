@@ -11,4 +11,6 @@ const create = ({ name, email, password }) => (
 
 const getAllProducts = () => apiBase.get('/customer/products');
 
-export { login, create, getAllProducts };
+const getAllOrders = () => apiBase.get('/customer/orders');
+
+export { login, create, getAllProducts, getAllOrders };

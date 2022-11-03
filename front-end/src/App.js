@@ -4,6 +4,8 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Products from './pages/products/Products';
 import Checkout from './pages/checkout/Checkout';
+import Orders from './pages/orders/Orders';
+import OrdersDetails from './pages/orders-details/OrdersDetails';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Route path="/customer">
         <Route path="products" element={ <Products /> } />
         <Route path="checkout" element={ <Checkout /> } />
+        <Route path="orders" element={ <Orders /> } />
+        <Route path="orders/:id" element={ <OrdersDetails /> } />
       </Route>
     </Routes>
   );
