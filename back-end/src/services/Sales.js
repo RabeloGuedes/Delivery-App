@@ -16,6 +16,10 @@ const SalesService = {
     delivery_number: deliveryNumber,
   });
     return newSale;
+  },
+  getAll: async () => {
+    const sales = await Sale.findAll();
+    return sales;
   }
 }
 
