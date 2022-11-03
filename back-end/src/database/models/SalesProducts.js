@@ -1,10 +1,10 @@
 const SalesProducts = (sequelize, DataTypes) => {
   const SalesProducts = sequelize.define('SalesProducts', {
-    sales_id: {
+    salesId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    sales_id: {
+    productsId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
