@@ -29,12 +29,16 @@ const Sale = (sequelize, DataTypes) => {
     saleDate: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
     }
     },
     { 
       timestamps: false,
       tableName: 'sales',
-      // underscored: true,
+      underscored: true,
     }
   );
   
@@ -43,13 +47,15 @@ const Sale = (sequelize, DataTypes) => {
       { foreignKey: 'userId', as: 'users' });
     Sale.belongsTo(models.User,
       { foreignKey: 'sellerId', as: 'sellers' });
-    Sale.hasMany(models.SalesProducts, {
-        foreignKey: 'saleId',
-        as: 'salesProducts',
-      })
   };
 
   return Sale;
 }
   
 module.exports = Sale;
+
+// Matches.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teamHome' });
+// Matches.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teamAway' });
+
+// Team.hasMany(Matches, { foreignKey: 'homeTeam', as: 'homeTeamMatches' });
+// Team.hasMany(Matches, { foreignKey: 'awayTeam', as: 'awayTeamMatches' }); 
