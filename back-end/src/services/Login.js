@@ -5,12 +5,13 @@ const { generateToken } = require('../middlewares/auth');
 const loginService = async (email, password) => {
   const criptoPass = crypto.createHash('md5').update(password).digest('hex');
   const getUserById = await User.findOne({ where: { email, password: criptoPass },
-     attributes: { exclude: ['id', 'password'] } });
+    attributes: { exclude: ['password'] } });
+  const { id, ...userData } = getUserById.dataValues;
   if (getUserById) {
-    const token = generateToken({ email, role: getUserById.role });
-    return { ...getUserById.dataValues, token };
+    const token = generateToken({ email, role: getUserById.role, id });
+    return { ...userData, token };
   }
-  return getUserById;
+  return userData;
 };
 
 module.exports = loginService;
