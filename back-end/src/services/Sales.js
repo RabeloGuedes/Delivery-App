@@ -10,7 +10,7 @@ const SalesService = {
     requestdata.cart.forEach(async (produto) => {
       await SalesProducts.create({
         saleId: newSale.id,
-        productId: produto.productId,
+        productId: produto.id,
         quantity: produto.quantity,
       });
     });
