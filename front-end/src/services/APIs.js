@@ -13,4 +13,9 @@ const getAllProducts = () => apiBase.get('/customer/products');
 
 const getAllOrders = () => apiBase.get('/customer/orders');
 
-export { login, create, getAllProducts, getAllOrders };
+const getSaleById = async (id) => apiBase.get(`/customer/orders/${id}`);
+
+const createSale = async (sale, auth) => apiBase
+  .post('/customer/orders', sale, { headers: auth });
+
+export { login, create, getAllProducts, getAllOrders, createSale, getSaleById };
