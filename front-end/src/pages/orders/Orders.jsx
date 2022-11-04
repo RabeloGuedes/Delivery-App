@@ -7,17 +7,17 @@ import MainContext from '../../context/MainContext';
 export default function Orders() {
   const {
     orders,
-    setOrders,
+    // setOrders,
   } = useContext(MainContext);
 
-  useEffect(() => {
-    async function getitems() {
-      const { data } = await getAllOrders();
-      console.log('result', data);
-      setOrders(data);
-    }
-    getitems();
-  }, []);
+  // useEffect(() => {
+  //   async function getitems() {
+  //     const { data } = await getAllOrders();
+  //     console.log('result', data);
+  //     setOrders(data);
+  //   }
+  //   getitems();
+  // }, []);
 
   return (
     <div>
