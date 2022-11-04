@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar/NavBar';
 import CheckoutProduct from '../../components/checkout-product/CheckoutProduct';
 
 export default function Checkout() {
+  const navigate = useNavigate();
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
 
   const totalPrice = cart.reduce((acc, curr) => Number(acc) + Number(curr.subTotal), 0);
@@ -51,6 +53,7 @@ export default function Checkout() {
       <button
         type="button"
         data-testid="customer_checkout__button-submit-order"
+        onClick={ () => navigate('/customer/orders/1') }
       >
         Finaliza compra
       </button>

@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import NavBar from '../../components/navbar/NavBar';
 import CardOrders from '../../components/card-orders/CardOrders';
 import { getAllOrders } from '../../services/APIs';
+import MainContext from '../../context/MainContext';
 
 export default function Orders() {
-  const [orders, setOrders] = useState([
-    { orderId: 1, delivetyStatus: 'Entregue', orderDate: '01/01/2021', orderPrice: 10 },
-    { orderId: 2, delivetyStatus: 'Entregue', orderDate: '01/02/2021', orderPrice: 10 },
-    { orderId: 3, delivetyStatus: 'Entregue', orderDate: '01/04/2021', orderPrice: 10 },
-  ]);
+  const {
+    orders,
+    setOrders,
+  } = useContext(MainContext);
 
   useEffect(() => {
     async function getitems() {

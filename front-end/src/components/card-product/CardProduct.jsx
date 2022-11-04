@@ -16,7 +16,6 @@ export default function CardProduct(props) {
       const newCart = cart.map((item) => {
         if (item.id === id && item.quantity > 0) {
           return { ...item,
-            productId: id,
             quantity: item.quantity - 1,
             subTotal: Number((Number(item.subTotal) - Number(price)).toFixed(2)) };
         }
@@ -30,9 +29,9 @@ export default function CardProduct(props) {
   const addToCart = () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const product = {
+      id,
       name: productName,
       price,
-      productId: id,
       quantity: 1,
       subTotal: Number(price),
     };
@@ -40,7 +39,6 @@ export default function CardProduct(props) {
       const newCart = cart.map((item) => {
         if (item.id === id) {
           return { ...item,
-            productId: id,
             quantity: Number(item.quantity) + 1,
             subTotal: Number((Number(item.subTotal) + Number(price)).toFixed(2)) };
         }
@@ -59,7 +57,7 @@ export default function CardProduct(props) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     setQuantity(target.value);
     const product = {
-      productId: id,
+      id,
       name: productName,
       price,
       quantity: target.value,
@@ -75,7 +73,6 @@ export default function CardProduct(props) {
         if (item.id === id) {
           return {
             ...item,
-            productId: id,
             quantity: target.value,
             subTotal: Number(item.price) * Number(target.value),
           };

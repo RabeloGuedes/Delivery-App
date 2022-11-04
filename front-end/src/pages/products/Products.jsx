@@ -48,7 +48,8 @@ export default function Products() {
       <button
         type="button"
         onClick={ () => navigate('/customer/checkout') }
-        disabled={ cart.length === 0 }
+        // disabled={ cart.length === 0 }
+        disabled={ totalPrice === 0 }
         data-testid="customer_products__button-cart"
       >
         <h3

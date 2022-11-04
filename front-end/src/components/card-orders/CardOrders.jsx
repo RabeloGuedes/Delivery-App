@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import Proptypes from 'prop-types';
 
 export default function CardOrders({
@@ -6,13 +7,18 @@ export default function CardOrders({
   orderDate,
   orderPrice,
 }) {
+  const navigate = useNavigate();
   return (
-    <div>
-      <p
+    <div
+      className="card-orders"
+    >
+      <button
+        type="button"
         data-testid={ `customer_orders__element-order-id-${orderId}` }
+        onClick={ () => navigate(`/customer/orders/${orderId}`) }
       >
         { orderId }
-      </p>
+      </button>
       <p
         data-testid={ `customer_orders__element-delivery-status-${orderId}` }
       >

@@ -5,7 +5,12 @@ import MainContext from '../context/MainContext';
 function MainProvider({ children }) {
   const [user, setUser] = useState('');
   const [products, setProducts] = useState([]);
-  const [orders, setOrders] = useState([]);
+  // const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([
+    { orderId: 1, delivetyStatus: 'Entregue', orderDate: '01/01/2021', orderPrice: 11 },
+    { orderId: 2, delivetyStatus: 'Entregue', orderDate: '01/02/2021', orderPrice: 12 },
+    { orderId: 3, delivetyStatus: 'Entregue', orderDate: '01/04/2021', orderPrice: 14 },
+  ]);
 
   // const [selectedListItems, setSelectedListItems] = useState('');
   // const [searchItem, setSearchItem] = useState('');
