@@ -4,18 +4,20 @@ import NavBar from '../../components/navbar/NavBar';
 import OrderDetailsHeader from '../../components/order-details-header/OrderDetailsHeader';
 import OrderDetailsItem from '../../components/order-details-item/OrderDetailsItem';
 
-const itemsMockCicrano = [
-  { id: 1, item: 'Haikyuu1', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
-  { id: 2, item: 'Haikyuu2', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
-  { id: 3, item: 'Haikyuu3', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
-];
-const itemsMockZe = [
-  { id: 4, item: 'Haikyuu1', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
-  { id: 5, item: 'Haikyuu2', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
-  { id: 6, item: 'Haikyuu3', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
+const itemsMocks = [
+  [
+    { id: 1, item: 'Hkyuu1', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
+    { id: 2, item: 'Hkyuu2', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
+    { id: 3, item: 'Hkyuu3', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
+  ],
+  [
+    { id: 4, item: 'Hkyuu1', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
+    { id: 5, item: 'Hkyuu2', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
+    { id: 6, item: 'Hkyuu3', description: 'Anime', quantity: 1, price: 10, subtotal: 10 },
+  ],
 ];
 
-const populateOrderDetailsItem = (itemsMocks) => itemsMocks.map((order) => (
+const populateOrderDetailsItem = (orders) => orders.map((order) => (
   <div
     key={ order.id }
   >
@@ -34,9 +36,9 @@ export default function OrdersDetails() {
     <div>
       <NavBar />
       <OrderDetailsHeader
-        { ...orders[1] }
+        { ...orders[1][1] }
       />
-      { populateOrderDetailsItem(itemsMock) }
+      { populateOrderDetailsItem(itemsMocks[1]) }
     </div>
   );
 }

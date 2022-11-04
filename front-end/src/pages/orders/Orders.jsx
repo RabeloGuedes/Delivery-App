@@ -1,7 +1,8 @@
-import { useEffect, useContext } from 'react';
+// import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import NavBar from '../../components/navbar/NavBar';
 import CardOrders from '../../components/card-orders/CardOrders';
-import { getAllOrders } from '../../services/APIs';
+// import { getAllOrders } from '../../services/APIs';
 import MainContext from '../../context/MainContext';
 
 export default function Orders() {
