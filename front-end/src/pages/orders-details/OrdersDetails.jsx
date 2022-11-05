@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import NavBar from '../../components/navbar/NavBar';
 import OrderDetailsHeader from '../../components/order-details-header/OrderDetailsHeader';
-import OrderDetailsItem from '../../components/order-details-item/OrderDetailsItem';
+import OrderTable from '../../components/order-table/order-table';
 import { getSaleById } from '../../services/APIs';
 
 export default function OrdersDetails() {
@@ -26,7 +26,7 @@ export default function OrdersDetails() {
         && (
           <>
             <OrderDetailsHeader { ...customerData } />
-            <OrderDetailsItem { ...customerData } />
+            <OrderTable { ...customerData } />
           </>
         )}
     </div>

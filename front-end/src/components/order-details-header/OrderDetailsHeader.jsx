@@ -10,32 +10,41 @@ export default function OrderDetailsHeader({
   return (
     <div>
       <p
-        data-testid="customer_order_details__element-order-details-label-order-id"
+        data-testid={ `customer_order_details
+        __element-order-details-label-order-id` }
       >
         { id }
       </p>
       <p
-        data-testid="customer_order_details__element-order-details-label-seller-name"
+        data-testid={ `customer_order_details
+        __element-order-details-label-seller-name` }
       >
         { sellerId }
       </p>
       <p
-        data-testid="customer_order_details__element-order-details-label-order-date"
+        data-testid={ `customer_order_details
+        __element-order-details-label-order-date` }
       >
         { saleDate }
       </p>
       <p
-        data-testid="customer_order_details__element-order-details-label-order-date"
+        data-testid="customer_order_details__element-order-total-price"
       >
         { totalPrice }
       </p>
       <p
-        data-testid="customer_order_details__element-order-details-label-order-date"
-        // data-testid={ `customer_order_details__
-        // element-order-details-label-delivery-status-${index}` }
+        data-testid={ `customer_order_details
+        __element-order-details-label-delivery-status-${id}` }
       >
         { status }
       </p>
+      <button
+        type="button"
+        data-testid="customer_order_details__button-delivery-check"
+        disabled
+      >
+        MARCAR COMO ENTREGUE
+      </button>
     </div>
   );
 }

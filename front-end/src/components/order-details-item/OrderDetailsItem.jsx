@@ -24,7 +24,7 @@ export default function OrderDetailsItem({ sale }) {
               data-testid="customer_order_details__element-order-details-label-order-date"
             >
               {/* <p>Quantidade</p> */}
-              { itemSale.SalesProducts.quantity}
+              { itemSale.SalesProducts.quantity }
             </p>
             <p
               data-testid="customer_order_details__element-order-details-label-order-date"
