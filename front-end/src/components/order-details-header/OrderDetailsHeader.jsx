@@ -1,35 +1,40 @@
 import Proptypes from 'prop-types';
 
 export default function OrderDetailsHeader({
-  orderId,
-  // sellerName,
-  delivetyStatus,
-  orderDate,
-  // index,
+  id,
+  sellerId,
+  totalPrice,
+  saleDate,
+  status,
 }) {
   return (
     <div>
       <p
         data-testid="customer_order_details__element-order-details-label-order-id"
       >
-        { orderId }
+        { id }
       </p>
-      {/* <p
+      <p
         data-testid="customer_order_details__element-order-details-label-seller-name"
       >
-        { selleName }
-      </p> */}
+        { sellerId }
+      </p>
       <p
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        { orderDate }
+        { saleDate }
+      </p>
+      <p
+        data-testid="customer_order_details__element-order-details-label-order-date"
+      >
+        { totalPrice }
       </p>
       <p
         data-testid="customer_order_details__element-order-details-label-order-date"
         // data-testid={ `customer_order_details__
         // element-order-details-label-delivery-status-${index}` }
       >
-        { delivetyStatus }
+        { status }
       </p>
     </div>
   );
@@ -37,6 +42,8 @@ export default function OrderDetailsHeader({
 
 OrderDetailsHeader.propTypes = {
   id: Proptypes.number,
-  name: Proptypes.string,
-  date: Proptypes.string,
+  sellerId: Proptypes.number,
+  saleDate: Proptypes.string,
+  totalPrice: Proptypes.number,
+  status: Proptypes.string,
 }.isRequired;

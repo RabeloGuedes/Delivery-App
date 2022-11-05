@@ -16,8 +16,6 @@ export default function Checkout() {
   const handleCheckout = async (e) => {
     e.preventDefault();
 
-    console.log('deliveryAddress', deliveryAddress);
-
     const sale = {
       sellerId: 2,
       totalPrice,
@@ -31,7 +29,6 @@ export default function Checkout() {
     };
     console.log(token);
     const { data: { id } } = await createSale(sale, auth);
-    // console.log(id);
 
     localStorage.removeItem('cart');
     navigate(`/customer/orders/${id}`);
@@ -69,14 +66,16 @@ export default function Checkout() {
         </select>
         <input
           data-testid="customer_checkout__input-address"
-          value={ (e) => setDeliveryAddress(e.target.value) }
+          value={ deliveryAddress }
+          onChange={ (e) => setDeliveryAddress(e.target.value) }
           id="adress"
           type="text"
           placeholder="Rua Avenida Brasil"
         />
         <input
           data-testid="customer_checkout__input-address-number"
-          value={ (e) => setDeliveryNumber(e.target.value) }
+          value={ deliveryNumber }
+          onChange={ (e) => setDeliveryNumber(e.target.value) }
           id="adress-number"
           type="number"
           placeholder="100"
@@ -84,48 +83,10 @@ export default function Checkout() {
         <button
           type="submit"
           data-testid="customer_checkout__button-submit-order"
-          // onClick={ (e) => handleCheckout(e) }
         >
           Finalizar compra
         </button>
       </form>
-      {/* <h3
-        data-testid="customer_checkout__element-order-total-price"
-      >
-        {
-          totalPrice.toFixed(2).replace('.', ',')
-        }
-      </h3>
-      <select
-        name=""
-        id=""
-        data-testid="customer_checkout__select-seller"
-      >
-        <option>
-          Fulano
-        </option>
-      </select>
-      <input
-        data-testid="customer_checkout__input-address"
-        value={ (e) => setDeliveryAddress(e.target.value) }
-        id="adress"
-        type="text"
-        placeholder="Rua Avenida Brasil"
-      />
-      <input
-        data-testid="customer_checkout__input-address-number"
-        value={ (e) => setDeliveryNumber(e.target.value) }
-        id="adress-number"
-        type="number"
-        placeholder="100"
-      />
-      <button
-        type="button"
-        data-testid="customer_checkout__button-submit-order"
-        onClick={ (e) => handleCheckout(e) }
-      >
-        Finalizar compra
-      </button> */}
     </section>
   );
 }
