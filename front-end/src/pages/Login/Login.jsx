@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../services/APIs';
+import { login, isTheUserAuthenticated } from '../../services/APIs';
 import Input from '../../components/Input/Input';
 import MainContext from '../../context/MainContext';
 
@@ -19,11 +19,18 @@ export default function Login() {
 
   useEffect(() => {
     const emailRegex = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+    const getRole = async () => {
+      const role = await isTheUserAuthenticated();
+      if (role !== null) {
+        navigate(`/${role?.data}/orders`);
+      }
+    };
+    getRole();
     setIsLoginButtonDisabled(() => (
       !emailRegex.test(loginValues.email)
       || loginValues.password.length < SIX
     ));
-  }, [loginValues]);
+  }, [loginValues, navigate]);
 
   const inputs = [
     {
