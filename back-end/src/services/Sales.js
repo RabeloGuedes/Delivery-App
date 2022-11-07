@@ -1,6 +1,9 @@
-const { Sale } = require('../database/models');
-const { sales_products: SalesProducts, Product } = require('../database/models');
-// const { SalesProducts  } as sales_products = require('../database/models');
+const {
+  sales_products: SalesProducts,
+  Product,
+  Sale,
+  User,
+} = require('../database/models');
 
 const SalesService = {
   create: async (requestdata) => {
@@ -31,6 +34,13 @@ const SalesService = {
         {
         model: Product,
         as: 'sale',
+        },
+        {
+          model: User,
+          as: 'sellers',
+          attributes: {
+            exclude: ['password', 'id', 'email', 'role'],
+          },
         },
       ],
     });
