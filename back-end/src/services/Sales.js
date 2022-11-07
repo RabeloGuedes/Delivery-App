@@ -57,7 +57,7 @@ const SalesService = {
           'deliveryAddress',
           'deliveryNumber',
         ],
-      }
+      },
     });
     return salesByUserId;
   },
