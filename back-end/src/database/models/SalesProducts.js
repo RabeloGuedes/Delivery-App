@@ -1,5 +1,5 @@
 const SalesProducts = (sequelize, DataTypes) => {
-  const SalesProducts = sequelize.define('SalesProducts', {
+  const SalesProducts = sequelize.define('sales_products', {
     saleId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -16,7 +16,7 @@ const SalesProducts = (sequelize, DataTypes) => {
     },
   }, { 
     timestamps: false,
-    tableName: 'SalesProducts',
+    tableName: 'sales_products',
     underscored: true,
   });
 

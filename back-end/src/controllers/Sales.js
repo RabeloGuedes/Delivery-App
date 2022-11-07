@@ -4,7 +4,7 @@ const SalesController = {
   create: async (req, res) => {
     const { body, user } = req;
     // console.log('user', user);
-    const newSale = await SalesService.create({ ...body, status: 'pendente', userId: user });
+    const newSale = await SalesService.create({ ...body, status: 'Pendente', userId: user });
     res.status(201).json(newSale);
   },
   getAll: async (_req, res) => {

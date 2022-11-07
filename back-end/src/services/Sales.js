@@ -1,5 +1,6 @@
 const { Sale } = require('../database/models');
-const { SalesProducts, Product } = require('../database/models');
+const { sales_products: SalesProducts, Product } = require('../database/models');
+// const { SalesProducts  } as sales_products = require('../database/models');
 
 const SalesService = {
   create: async (requestdata) => {

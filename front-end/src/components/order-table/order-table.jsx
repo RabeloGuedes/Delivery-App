@@ -23,7 +23,7 @@ export default function OrderTable({ sale }) {
             data-testid={ `customer_order_details
             __element-order-table-quantity-${index + 1}` }
           >
-            {itemSale.SalesProducts.quantity}
+            {itemSale.sales_products.quantity}
           </td>
           <td
             data-testid={ `customer_order_details
@@ -35,7 +35,7 @@ export default function OrderTable({ sale }) {
             data-testid={ `customer_order_details
             __element-order-table-sub-total-${index + 1}` }
           >
-            {(itemSale.SalesProducts.quantity
+            {(itemSale.sales_products.quantity
                   * itemSale.price).toFixed(2).replace('.', ',')}
           </td>
         </tr>
