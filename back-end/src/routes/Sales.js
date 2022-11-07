@@ -22,6 +22,11 @@ verifyCart,
 SalesController.create,
 );
 route.get('/', SalesController.getAll);
+route.get('/all',
+verifyToken,
+
+SalesController.getSalesByUserId
+);
 route.get('/:id', SalesController.getById);
 
 module.exports = route;

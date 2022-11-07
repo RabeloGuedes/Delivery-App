@@ -46,6 +46,21 @@ const SalesService = {
     });
     return saleById;
   },
+
+  getSalesByUserId: async (id) => {
+    const salesByUserId = await Sale.findAll({
+      where: { userId: id },
+      attributes: {
+        exclude: [
+          'userId',
+          'sellerId',
+          'deliveryAddress',
+          'deliveryNumber',
+        ],
+      }
+    });
+    return salesByUserId;
+  },
 };
 
 module.exports = SalesService;
