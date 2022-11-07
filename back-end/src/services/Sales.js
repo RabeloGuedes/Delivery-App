@@ -11,13 +11,14 @@ const SalesService = {
       ...requestdata,
     });
 
-    requestdata.cart.forEach(async (produto) => {
-      await SalesProducts.create({
+    await Promise.all(requestdata.cart.map((produto) => {
+      const products = SalesProducts.create({
         saleId: newSale.id,
         productId: produto.id,
         quantity: produto.quantity,
       });
-    });
+      return products
+    }));
   
     return newSale;
   },
