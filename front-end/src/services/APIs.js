@@ -27,7 +27,7 @@ const isTheUserAuthenticated = async () => {
     if (user?.token) {
       return apiBase.get(
         '/login',
-        { headers: { Authorization: token } },
+        { headers: { Authorization: user.token } },
       );
     } return null;
   } catch (error) {
