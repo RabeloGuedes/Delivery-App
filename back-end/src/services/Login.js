@@ -6,12 +6,12 @@ const loginService = async (email, password) => {
   const criptoPass = crypto.createHash('md5').update(password).digest('hex');
   const getUserById = await User.findOne({ where: { email, password: criptoPass },
     attributes: { exclude: ['password'] } });
-  const { id, ...userData } = getUserById.dataValues;
-  if (getUserById) {
+    if (getUserById) {
+    const { id, ...userData } = getUserById.dataValues;
     const token = generateToken({ email, role: getUserById.role, id });
     return { ...userData, token };
   }
-  return userData;
+  return getUserById;
 };
 
 module.exports = loginService;

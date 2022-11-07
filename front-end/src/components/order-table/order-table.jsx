@@ -2,7 +2,7 @@ import React from 'react';
 import Proptypes from 'prop-types';
 
 export default function OrderTable({ sale }) {
-  // console.log(sale);
+  console.log(sale);
   function geRows() {
     return (
       sale.map((itemSale, index) => (
