@@ -1,11 +1,16 @@
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment/moment';
 import Proptypes from 'prop-types';
 
+moment.locale('pt-br');
+
+moment().format('DD/MM/YYYY');
+
 export default function CardOrders({
-  orderId,
-  delivetyStatus,
-  orderDate,
-  orderPrice,
+  id,
+  status,
+  saleDate,
+  totalPrice,
 }) {
   const navigate = useNavigate();
   return (
@@ -14,33 +19,33 @@ export default function CardOrders({
     >
       <button
         type="button"
-        data-testid={ `customer_orders__element-order-id-${orderId}` }
-        onClick={ () => navigate(`/customer/orders/${orderId}`) }
+        data-testid={ `customer_orders__element-order-id-${id}` }
+        onClick={ () => navigate(`/customer/orders/${id}`) }
       >
-        { orderId }
+        { id }
       </button>
       <p
-        data-testid={ `customer_orders__element-delivery-status-${orderId}` }
+        data-testid={ `customer_orders__element-delivery-status-${id}` }
       >
-        { delivetyStatus }
+        { status }
       </p>
       <p
-        data-testid={ `customer_orders__element-order-date-${orderId}` }
+        data-testid={ `customer_orders__element-order-date-${id}` }
       >
-        { orderDate }
+        { moment(saleDate).format('DD/MM/YYYY') }
       </p>
       <p
-        data-testid={ `customer_orders__element-card-price-${orderId}` }
+        data-testid={ `customer_orders__element-card-price-${id}` }
       >
-        { Number(orderPrice).toFixed(2).replace('.', ',') }
+        { Number(totalPrice).toFixed(2).replace('.', ',') }
       </p>
     </div>
   );
 }
 
 CardOrders.propTypes = {
-  orderId: Proptypes.number,
-  delivetyStatus: Proptypes.string,
-  orderDate: Proptypes.string,
-  orderPrice: Proptypes.number,
+  id: Proptypes.number,
+  status: Proptypes.string,
+  saleDate: Proptypes.string,
+  totalPrice: Proptypes.number,
 }.isRequired;

@@ -1,20 +1,14 @@
 import { useEffect, useState } from 'react';
-// import { useContext } from 'react';
 import NavBar from '../../components/navbar/NavBar';
 import CardOrders from '../../components/card-orders/CardOrders';
-// import { getAllOrders } from '../../services/APIs';
-// import MainContext from '../../context/MainContext';
+import { getOrdersByUserId } from '../../services/APIs';
 
 export default function Orders() {
-  // const {
-  //   orders,
-  //   // setOrders,
-  // } = useContext(MainContext);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     async function getitems() {
-      const { data } = await getAllOrders();
+      const { data } = await getOrdersByUserId();
       console.log('result', data);
       setOrders(data);
     }
@@ -29,7 +23,7 @@ export default function Orders() {
           orders.map((item, index) => (
             <CardOrders
               { ...item }
-              key={ item.orderId }
+              key={ item.id }
               index={ index }
             />
           ))
