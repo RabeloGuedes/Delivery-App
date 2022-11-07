@@ -2,10 +2,11 @@ import Proptypes from 'prop-types';
 
 export default function OrderDetailsHeader({
   id,
-  sellerId,
+  // sellerId,
   totalPrice,
   saleDate,
   status,
+  sellers: { name },
 }) {
   return (
     <div>
@@ -19,7 +20,7 @@ export default function OrderDetailsHeader({
         data-testid={ `customer_order_details
         __element-order-details-label-seller-name` }
       >
-        { sellerId }
+        { name }
       </p>
       <p
         data-testid={ `customer_order_details
@@ -30,7 +31,7 @@ export default function OrderDetailsHeader({
       <p
         data-testid="customer_order_details__element-order-total-price"
       >
-        { totalPrice }
+        { totalPrice.replace('.', ',') }
       </p>
       <p
         data-testid={ `customer_order_details
@@ -51,7 +52,7 @@ export default function OrderDetailsHeader({
 
 OrderDetailsHeader.propTypes = {
   id: Proptypes.number,
-  sellerId: Proptypes.number,
+  name: Proptypes.string,
   saleDate: Proptypes.string,
   totalPrice: Proptypes.number,
   status: Proptypes.string,

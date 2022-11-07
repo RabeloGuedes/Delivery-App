@@ -7,13 +7,12 @@ import { getSaleById } from '../../services/APIs';
 
 export default function OrdersDetails() {
   const { id } = useParams();
-  const [customerOrder, setCustomerOrder] = useState([]);
   const [customerData, setCustomerData] = useState([]);
 
   useEffect(() => {
     async function getitems() {
       const { data } = await getSaleById(id);
-      setCustomerOrder(data.sale);
+      console.log(data);
       setCustomerData(data);
     }
     getitems();
@@ -22,7 +21,7 @@ export default function OrdersDetails() {
   return (
     <div>
       <NavBar />
-      { (customerOrder.length > 0)
+      { (customerData?.sale?.length > 0)
         && (
           <>
             <OrderDetailsHeader { ...customerData } />

@@ -4,14 +4,16 @@ const apiBase = axios.create({
   baseURL: 'http://localhost:3001',
 });
 
-const login = (email, password) => apiBase.post('/login', { email, password });
+const login = async (email, password) => apiBase.post('/login', { email, password });
 
-const create = ({ name, email, password }) => (
+const create = async ({ name, email, password }) => (
   apiBase.post('/register', { name, email, password }));
 
-const getAllProducts = () => apiBase.get('/customer/products');
+const getAllProducts = async () => apiBase.get('/customer/products');
 
-const getAllOrders = () => apiBase.get('/customer/orders');
+const getAllOrders = async () => apiBase.get('/customer/orders');
+
+// const getOrdersById = async () => apiBase.get('/customer/orders/${id}');
 
 const getSaleById = async (id) => apiBase.get(`/customer/orders/${id}`);
 
