@@ -27,11 +27,11 @@ export default function Checkout() {
     const auth = {
       Authorization: token,
     };
-    console.log(token);
+    // console.log(token);
     const { data: { id } } = await createSale(sale, auth);
 
-    localStorage.removeItem('cart');
     navigate(`/customer/orders/${id}`);
+    localStorage.removeItem('cart');
   };
 
   return (
