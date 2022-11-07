@@ -13,8 +13,12 @@ if (!token) {
 }
 
 try {
-  const { id } = jwt.verify(token, SECRET);
-  req.user = id;
+  const { id, role } = jwt.verify(token, SECRET);
+  req.user = 
+  {
+    id,
+    role
+  };
 
   next();
   } catch (err) {
