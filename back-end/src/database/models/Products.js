@@ -7,15 +7,16 @@ const Product = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     name: DataTypes.STRING,
-    price: DataTypes.DECIMAL(4,2),
+    price: DataTypes.NUMBER,
     url_image: DataTypes.STRING,
     },
     { 
       timestamps: false,
       tableName: 'products',
+      underscored: true,
     }
   );
-  
+
   return Product;
 }
   

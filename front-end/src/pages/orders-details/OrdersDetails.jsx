@@ -1,13 +1,33 @@
-// import React, { useContext } from 'react';
-// import { useNavigate, useLocation } from 'react-router-dom';
-// import MainContext from '../../Context/MainContext';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import NavBar from '../../components/navbar/NavBar';
-// import './CustomerOrdersDetails.css';
+import OrderDetailsHeader from '../../components/order-details-header/OrderDetailsHeader';
+import OrderTable from '../../components/order-table/order-table';
+import { getSaleById } from '../../services/APIs';
 
 export default function OrdersDetails() {
+  const { id } = useParams();
+  const [customerData, setCustomerData] = useState([]);
+
+  useEffect(() => {
+    async function getitems() {
+      const { data } = await getSaleById(id);
+      console.log(data);
+      setCustomerData(data);
+    }
+    getitems();
+  }, [id]);
+
   return (
     <div>
       <NavBar />
+      { (customerData?.sale?.length > 0)
+        && (
+          <>
+            <OrderDetailsHeader { ...customerData } />
+            <OrderTable { ...customerData } />
+          </>
+        )}
     </div>
   );
 }

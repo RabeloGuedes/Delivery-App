@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'qualquercoisa';
+const jwtKey = require('fs')
+  .readFileSync('jwt.evaluation.key', { encoding: 'utf-8' });
+
+const JWT_SECRET = jwtKey;
 
 const JWT_CONFIG = {
   expiresIn: '1d',
@@ -9,7 +12,7 @@ const JWT_CONFIG = {
 
 const generateToken = (payload) => {
   const token = jwt.sign(
-    { email: payload.email, role: payload.role },
+    { email: payload.email, role: payload.role, id: payload.id },
     JWT_SECRET,
     JWT_CONFIG,
   );

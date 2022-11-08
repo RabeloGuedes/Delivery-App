@@ -4,39 +4,12 @@ import MainContext from '../context/MainContext';
 
 function MainProvider({ children }) {
   const [user, setUser] = useState('');
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: 'Product 1',
-      price: 100,
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      price: 200,
-    },
-    {
-      id: 3,
-      name: 'Product 3',
-      price: 300,
-    },
-  ]);
+  const [products, setProducts] = useState([]);
+  // const [orders, setOrders] = useState([]);
   const [orders, setOrders] = useState([
-    {
-      id: 1,
-      name: 'Product 1',
-      price: 100,
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      price: 200,
-    },
-    {
-      id: 3,
-      name: 'Product 3',
-      price: 300,
-    },
+    { orderId: 1, delivetyStatus: 'Entregue', orderDate: '01/01/2021', orderPrice: 11 },
+    { orderId: 2, delivetyStatus: 'Entregue', orderDate: '01/02/2021', orderPrice: 12 },
+    { orderId: 3, delivetyStatus: 'Entregue', orderDate: '01/04/2021', orderPrice: 14 },
   ]);
 
   // const [selectedListItems, setSelectedListItems] = useState('');

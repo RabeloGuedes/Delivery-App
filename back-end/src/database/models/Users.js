@@ -21,12 +21,12 @@ const User = (sequelize, DataTypes) => {
     }
   );
   
-  /* User.associate = (models) => {
-  User.hasMany(models.BlogPost, {
-  foreignKey: 'userId',
-  as: 'posts',
-  })
-  }; */
+  User.associate = (models) => {
+    User.hasMany(models.Sale, {
+      foreignKey: 'userId',
+      as: 'user',
+    });
+  };
   
   return User;
 }
