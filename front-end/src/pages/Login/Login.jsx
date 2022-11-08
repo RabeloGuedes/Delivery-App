@@ -22,7 +22,7 @@ export default function Login() {
     const getRole = async () => {
       const role = await isTheUserAuthenticated();
       if (role !== null) {
-        navigate(`/${role?.data}/orders`);
+        navigate(`/${role?.data}/products`);
       }
     };
     getRole();

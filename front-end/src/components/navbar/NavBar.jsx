@@ -13,17 +13,21 @@ export default function NavBar() {
       <div className="nav-left">
         <div
           className="nav-button"
-          data-testid="customer_products__element-navbar-link-products"
         >
-          <Link to="/customer/products">
+          <Link
+            to="/customer/products"
+            data-testid="customer_products__element-navbar-link-products"
+          >
             PRODUTOS
           </Link>
         </div>
         <div
           className="nav-button"
-          data-testid="customer_products__element-navbar-link-orders"
         >
-          <Link to="/customer/orders">
+          <Link
+            to="/customer/orders"
+            data-testid="customer_products__element-navbar-link-orders"
+          >
             MEUS PEDIDOS
           </Link>
         </div>
