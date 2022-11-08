@@ -1,38 +1,41 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 
 export default function OrderTable({ sale }) {
-  console.log(sale);
+  // console.log(sale);
+  const { pathname } = useLocation();
+  const role = pathname.split('/')[1];
   function geRows() {
     return (
       sale.map((itemSale, index) => (
         <tr key={ itemSale.id } className={ index % 2 === 0 ? 'Even' : 'Odd' }>
           <td
-            data-testid={ `customer_order_details
+            data-testid={ `${role}_order_details
             __element-order-table-item-number-${index}` }
           >
             {index + 1}
           </td>
           <td
-            data-testid={ `customer_order_details
+            data-testid={ `${role}_order_details
             __element-order-table-name-${index}` }
           >
             {itemSale.name}
           </td>
           <td
-            data-testid={ `customer_order_details
+            data-testid={ `${role}_order_details
             __element-order-table-quantity-${index}` }
           >
             {itemSale.sales_products.quantity}
           </td>
           <td
-            data-testid={ `customer_order_details
+            data-testid={ `${role}_order_details
             __element-order-table-unit-price-${index}` }
           >
             {(itemSale.price).replace('.', ',')}
           </td>
           <td
-            data-testid={ `customer_order_details
+            data-testid={ `${role}_order_details
             __element-order-table-sub-total-${index}` }
           >
             {(itemSale.sales_products.quantity

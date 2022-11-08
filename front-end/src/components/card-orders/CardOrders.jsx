@@ -19,16 +19,16 @@ export default function CardOrders({
   const role = pathname.split('/')[1];
 
   return (
-    <div
+    <button
+      type="button"
       className="card-orders"
+      onClick={ () => navigate(`/${role}/orders/${id}`) }
     >
-      <button
-        type="button"
+      <p
         data-testid={ `${role}_orders__element-order-id-${id}` }
-        onClick={ () => navigate(`/${role}/orders/${id}`) }
       >
         { id }
-      </button>
+      </p>
       <p
         data-testid={ `${role}_orders__element-delivery-status-${id}` }
       >
@@ -51,7 +51,7 @@ export default function CardOrders({
             { `${deliveryAddress}, ${deliveryNumber}` }
           </p>)
       }
-    </div>
+    </button>
   );
 }
 
