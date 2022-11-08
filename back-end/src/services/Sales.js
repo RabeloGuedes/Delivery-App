@@ -55,6 +55,21 @@ const SalesService = {
         exclude: [
           'userId',
           'sellerId',
+          'deliveryAddress',
+          'deliveryNumber',
+        ],
+      },
+    });
+    return salesByUserId;
+  },
+
+  getSalesBySellerId: async (id) => {
+    const salesByUserId = await Sale.findAll({
+      where: { sellerId: id },
+      attributes: {
+        exclude: [
+          'userId',
+          'sellerId',
         ],
       },
     });
