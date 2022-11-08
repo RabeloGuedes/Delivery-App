@@ -17,7 +17,7 @@ const SalesService = {
         productId: produto.id,
         quantity: produto.quantity,
       });
-      return products
+      return products;
     }));
   
     return newSale;

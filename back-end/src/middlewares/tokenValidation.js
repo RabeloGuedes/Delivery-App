@@ -14,10 +14,9 @@ if (!token) {
 
 try {
   const { id, role } = jwt.verify(token, SECRET);
-  req.user = 
-  {
+  req.user = {
     id,
-    role
+    role,
   };
 
   next();
