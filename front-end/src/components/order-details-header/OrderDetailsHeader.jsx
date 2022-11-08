@@ -1,6 +1,8 @@
 import Proptypes from 'prop-types';
+import { useState } from 'react';
 import moment from 'moment/moment';
 import { useLocation } from 'react-router-dom';
+import { updateStatus } from '../../services/APIs';
 
 moment.locale('pt-br');
 
@@ -15,6 +17,8 @@ export default function OrderDetailsHeader({
   const { pathname } = useLocation();
   const role = pathname.split('/')[1];
   console.log(role);
+
+  const [currentStatus, setCurrentStatus] = useState(status);
 
   const headerElements = [
     {
@@ -35,14 +39,14 @@ export default function OrderDetailsHeader({
     {
       // index para cliente
       dataTestId: `${role}_order_details__element-order-details-label-delivery-status`,
-      text: `${status}`,
+      text: `${currentStatus}`,
       shouldRender: role === 'seller',
     },
     {
       // index para cliente
       dataTestId: `${role}_order_details
       __element-order-details-label-delivery-status-${id}`,
-      text: `${status}`,
+      text: `${currentStatus}`,
       shouldRender: role === 'customer',
     },
     {
@@ -52,6 +56,19 @@ export default function OrderDetailsHeader({
       shouldRender: role === 'customer',
     },
   ];
+
+  const statusName = ['Pendente', 'Preparando', 'Em trânsito', 'Entregue'];
+
+  const verifyStatus = (currStatus) => {
+    const currStatusIndex = statusName.indexOf(currStatus);
+    setCurrentStatus(statusName[currStatusIndex + 1]);
+
+    return statusName[currStatusIndex + 1];
+  };
+
+  const handleStatus = async () => {
+    updateStatus(id, verifyStatus(currentStatus));
+  };
 
   return (
     <div>
@@ -70,39 +87,12 @@ export default function OrderDetailsHeader({
           return null;
         })
       }
-      {/* <p
-        data-testid={ `${role}_order_details__element-order-details-label-order-id` }
-      >
-        { id }
-      </p>
-      { role === 'customer' && (
-        // só para cliente
-        <p
-          data-testid={ `${role}_order_details__element-order-details-label-seller-name` }
-        >
-          { name }
-        </p>
-      )}
-      <p
-        data-testid={ `${role}_order_details__element-order-details-label-order-date` }
-      >
-        { moment(saleDate).format('DD/MM/YYYY') }
-      </p>
-      <p
-        data-testid={ `${role}_order_details__element-order-total-price` }
-      >
-        { totalPrice.replace('.', ',') }
-      </p>
-      <p
-        // index para cliente
-        data-testid={ `${role}_order_details__element-order-details-label-delivery-status` }
-      >
-        { status }
-      </p> */}
       { role === 'customer' && (
         <button
           type="button"
           data-testid="customer_order_details__button-delivery-check"
+          onClick={ () => handleStatus() }
+          disabled={ currentStatus !== 'Em trânsito' }
         >
           MARCAR COMO ENTREGUE
         </button>
@@ -112,13 +102,16 @@ export default function OrderDetailsHeader({
           <button
             type="button"
             data-testid="seller_order_details__button-preparing-check"
+            onClick={ () => handleStatus() }
+            disabled={ currentStatus !== 'Pendente' }
           >
-            PREPARAR PEDIDO
+            { currentStatus }
           </button>
           <button
             type="button"
             data-testid="seller_order_details__button-dispatch-check"
-            disabled
+            onClick={ () => handleStatus() }
+            disabled={ currentStatus !== 'Preparando' }
           >
             SAIU PARA ENTREGA
           </button>

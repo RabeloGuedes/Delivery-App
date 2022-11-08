@@ -45,6 +45,9 @@ const isTheUserAuthenticated = async () => {
 
 const getSaleById = async (id) => apiBase.get(`/customer/orders/${id}`);
 
+const updateStatus = async (id, status) => apiBase
+  .patch(`/customer/orders/${id}`, { status });
+
 const createSale = async (sale, auth) => apiBase
   .post('/customer/orders', sale, { headers: auth });
 
@@ -58,4 +61,5 @@ export {
   getOrdersByUserId,
   getOrdersBySellerId,
   isTheUserAuthenticated,
+  updateStatus,
 };
