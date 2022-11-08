@@ -19,6 +19,9 @@ function App() {
         <Route path="orders" element={ <Orders /> } />
         <Route path="orders/:id" element={ <OrdersDetails /> } />
       </Route>
+      <Route path="/seller">
+        <Route path="orders" element={ <Orders /> } />
+      </Route>
     </Routes>
   );
 }
