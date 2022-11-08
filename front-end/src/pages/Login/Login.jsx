@@ -21,8 +21,12 @@ export default function Login() {
     const emailRegex = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     const getRole = async () => {
       const role = await isTheUserAuthenticated();
-      if (role !== null) {
+      if (role?.data === 'customer') {
         navigate(`/${role?.data}/products`);
+      } else if (role?.data === 'seller') {
+        navigate(`/${role?.data}/orders`);
+      } else if (role?.data === 'administrator') {
+        navigate('/administrator');
       }
     };
     getRole();
