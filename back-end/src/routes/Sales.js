@@ -25,7 +25,7 @@ route.get('/', SalesController.getAll);
 route.get('/all',
 verifyToken,
 SalesController.getSalesByUserId);
-route.patch('/:id', SalesController.updateSales)
+route.patch('/:id', SalesController.updateSales);
 
 route.get('/:id', SalesController.getById);
 

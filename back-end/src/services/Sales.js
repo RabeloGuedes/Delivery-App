@@ -77,7 +77,7 @@ const SalesService = {
   },
 
   updateSales: async (id, status) => {
-    const updateSale = await Sale.update({ status }, { where: { id } })
+    const updateSale = await Sale.update({ status }, { where: { id } });
     return updateSale;
   },
 };
