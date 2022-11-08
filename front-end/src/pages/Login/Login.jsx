@@ -57,7 +57,13 @@ export default function Login() {
       const { data } = await login(loginValues.email, loginValues.password);
       setUser(data.name);
       localStorage.setItem('user', JSON.stringify({ ...data }));
-      navigate('/customer/products');
+      if (data.role === 'customer') {
+        navigate('/customer/products');
+      } else if (data.role === 'seller') {
+        navigate('/seller/orders');
+      } else {
+        navigate('/admin/manage');
+      }
     } catch ({ message }) {
       if (message.includes('404')) {
         setInvalidEmail(true);

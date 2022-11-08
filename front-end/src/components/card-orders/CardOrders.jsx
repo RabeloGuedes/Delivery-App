@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import moment from 'moment/moment';
 import Proptypes from 'prop-types';
 
@@ -11,34 +11,46 @@ export default function CardOrders({
   status,
   saleDate,
   totalPrice,
+  deliveryAddress,
+  deliveryNumber,
 }) {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const role = pathname.split('/')[1];
+
   return (
     <div
       className="card-orders"
     >
       <button
         type="button"
-        data-testid={ `customer_orders__element-order-id-${id}` }
-        onClick={ () => navigate(`/customer/orders/${id}`) }
+        data-testid={ `${role}_orders__element-order-id-${id}` }
+        onClick={ () => navigate(`/${role}/orders/${id}`) }
       >
         { id }
       </button>
       <p
-        data-testid={ `customer_orders__element-delivery-status-${id}` }
+        data-testid={ `${role}_orders__element-delivery-status-${id}` }
       >
         { status }
       </p>
       <p
-        data-testid={ `customer_orders__element-order-date-${id}` }
+        data-testid={ `${role}_orders__element-order-date-${id}` }
       >
         { moment(saleDate).format('DD/MM/YYYY') }
       </p>
       <p
-        data-testid={ `customer_orders__element-card-price-${id}` }
+        data-testid={ `${role}_orders__element-card-price-${id}` }
       >
         { Number(totalPrice).toFixed(2).replace('.', ',') }
       </p>
+      {
+        role === 'seller'
+        && (
+          <p data-tesid={ `seller_orders__element-card-address-${id}` }>
+            { `${deliveryAddress}, ${deliveryNumber}` }
+          </p>)
+      }
     </div>
   );
 }
