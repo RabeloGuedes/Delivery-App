@@ -1,4 +1,7 @@
 import Proptypes from 'prop-types';
+import moment from 'moment/moment';
+
+moment.locale('pt-br');
 
 export default function OrderDetailsHeader({
   id,
@@ -11,22 +14,19 @@ export default function OrderDetailsHeader({
   return (
     <div>
       <p
-        data-testid={ `customer_order_details
-        __element-order-details-label-order-id` }
+        data-testid="customer_order_details__element-order-details-label-order-id"
       >
         { id }
       </p>
       <p
-        data-testid={ `customer_order_details
-        __element-order-details-label-seller-name` }
+        data-testid="customer_order_details__element-order-details-label-seller-name"
       >
         { name }
       </p>
       <p
-        data-testid={ `customer_order_details
-        __element-order-details-label-order-date` }
+        data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        { saleDate }
+        { moment(saleDate).format('DD/MM/YYYY') }
       </p>
       <p
         data-testid="customer_order_details__element-order-total-price"
@@ -34,8 +34,7 @@ export default function OrderDetailsHeader({
         { totalPrice.replace('.', ',') }
       </p>
       <p
-        data-testid={ `customer_order_details
-        __element-order-details-label-delivery-status-${id}` }
+        data-testid="customer_order_details__element-order-details-label-delivery-status"
       >
         { status }
       </p>
