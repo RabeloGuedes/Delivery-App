@@ -44,20 +44,19 @@ export default function OrderDetailsHeader({
     },
     {
       // index para cliente
-      dataTestId: `${role}_order_details
-      __element-order-details-label-delivery-status-${id}`,
+      dataTestId: `${role}_order_details__element-order-details-label-delivery-status`,
       text: `${currentStatus}`,
       shouldRender: role === 'customer',
     },
     {
       // só para cliente
-      dataTestId: `${role}_order_details__element-order-seller-name`,
+      dataTestId: `${role}_order_details__element-order-details-label-seller-name`,
       text: `${name}`,
       shouldRender: role === 'customer',
     },
   ];
 
-  const statusName = ['Pendente', 'Preparando', 'Em trânsito', 'Entregue'];
+  const statusName = ['Pendente', 'Preparando', 'Em Trânsito', 'Entregue'];
 
   const verifyStatus = (currStatus) => {
     const currStatusIndex = statusName.indexOf(currStatus);
@@ -92,7 +91,7 @@ export default function OrderDetailsHeader({
           type="button"
           data-testid="customer_order_details__button-delivery-check"
           onClick={ () => handleStatus() }
-          disabled={ currentStatus !== 'Em trânsito' }
+          disabled={ currentStatus !== 'Em Trânsito' }
         >
           MARCAR COMO ENTREGUE
         </button>
