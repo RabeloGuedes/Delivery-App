@@ -55,8 +55,6 @@ const SalesService = {
         exclude: [
           'userId',
           'sellerId',
-          'deliveryAddress',
-          'deliveryNumber',
         ],
       },
     });
