@@ -21,6 +21,14 @@ const getOrdersByUserId = async () => {
   );
 };
 
+const getOrdersBySellerId = async () => {
+  const { token } = JSON.parse(localStorage.getItem('user'));
+  return apiBase.get(
+    '/seller/orders/all',
+    { headers: { Authorization: token } },
+  );
+};
+
 const isTheUserAuthenticated = async () => {
   const user = JSON.parse(localStorage.getItem('user'));
   try {
@@ -48,5 +56,6 @@ export {
   createSale,
   getSaleById,
   getOrdersByUserId,
+  getOrdersBySellerId,
   isTheUserAuthenticated,
 };
