@@ -16,6 +16,18 @@ const userService = {
     attributes: { exclude: ['password', 'email', 'role'] } });
     return sellers;
   },
+  deleteUser: async (id) => {
+    const user = await User.findByPk(id);
+    if (!user) return { code: 404, message: 'User does not exist' };
+    if (user.role === 'administrator') {
+      return ({
+      code: 401,
+      message: 'Administrator can not be deleted',
+    });
+  }
+    await user.destroy();
+    return { code: 204, message: '' };
+  },
 };
 
 module.exports = userService;

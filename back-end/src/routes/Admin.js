@@ -22,5 +22,6 @@ verifyRole,
 adminRegisterController);
 
 routeAdmin.get('/users', verifyToken, userController.getAllUsers);
+routeAdmin.delete('/delete/user', verifyToken, userController.deleteUser);
 
 module.exports = routeAdmin;

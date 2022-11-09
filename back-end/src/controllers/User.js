@@ -13,6 +13,15 @@ const userController = {
     const sellers = await userService.getAllSellers();
     res.status(200).json(sellers);
   },
+  deleteUser: async (req, res) => {
+    const { role } = req.user;
+    if (role !== 'administrator') {
+      return res.status(401).json({ message: 'Unauthorized user' });
+    }
+    const { id } = req.body;
+    const { code, message } = await userService.deleteUser(id);
+    res.status(code).json({ message });
+  },
 };
 
 module.exports = userController;
