@@ -3,6 +3,8 @@ const { Router } = require('express');
 const routeAdmin = Router();
 
 const { adminRegisterController } = require('../controllers/Register');
+const userController = require('../controllers/User');
+
 const {
   verifyEmail,
   verifyPassword,
@@ -18,5 +20,7 @@ verifyPassword,
 verifyName,
 verifyRole,
 adminRegisterController);
+
+routeAdmin.get('/users', verifyToken, userController.getAllUsers);
 
 module.exports = routeAdmin;
