@@ -33,4 +33,18 @@ const verifyName = async (req, res, next) => {
   next();
 };
 
-module.exports = { verifyPassword, verifyEmail, verifyName };
+const verifyRole = async (req, res, next) => {
+  const { role } = req.body;
+
+  if (role === 'administrator') {
+    return res.status(400).json({ message: 'Invalid role!' });
+  }
+  next();
+};
+
+module.exports = {
+  verifyPassword,
+  verifyEmail,
+  verifyName,
+  verifyRole,
+};

@@ -14,4 +14,19 @@ const registerController = async (req, res) => {
   return res.status(201).json(token);
 };
 
-module.exports = registerController;
+const adminRegisterController = async (req, res) => {
+  const { name, email, password, role } = req.body;
+  const { role: userRole } = req.user;
+  if (userRole !== 'administrator') {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+  const newUser = await registerService({ name, email, password, role });
+  const { status, message } = newUser;
+
+  if (status && message) {
+    return res.status(status).json({ message });
+  }
+  return res.status(201).json({ message: 'User created successfully' });
+};
+
+module.exports = { registerController, adminRegisterController };
