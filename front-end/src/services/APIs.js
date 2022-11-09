@@ -45,6 +45,20 @@ const isTheUserAuthenticated = async () => {
 
 const getSaleById = async (id) => apiBase.get(`/customer/orders/${id}`);
 
+const getUsers = async () => { 
+  const user = JSON.parse(localStorage.getItem('user'));
+  try {
+    if (user?.token) {
+      return apiBase.get(
+        '/admin/manage/users',
+        { headers: { Authorization: user.token } },
+      );
+    } return null;
+  } catch (error) {
+    return null;
+  }
+};
+
 const updateStatus = async (id, status) => apiBase
   .patch(`/customer/orders/${id}`, { status });
 
@@ -57,6 +71,7 @@ export {
   getAllProducts,
   getAllOrders,
   createSale,
+  getUsers,
   getSaleById,
   getOrdersByUserId,
   getOrdersBySellerId,
