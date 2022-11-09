@@ -51,6 +51,20 @@ export default function NavBar() {
           </div>
 
         )}
+        { role === 'admin' && (
+
+          <div
+            className="nav-button"
+          >
+            <Link
+              to="/seller/orders"
+              data-testid="customer_products__element-navbar-link-orders"
+            >
+              GERENCIAR USUÁRIOS
+            </Link>
+          </div>
+
+        )}
       </div>
       <div
         className="nav-right"

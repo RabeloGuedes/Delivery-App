@@ -6,6 +6,7 @@ import Products from './pages/products/Products';
 import Checkout from './pages/checkout/Checkout';
 import Orders from './pages/orders/Orders';
 import OrdersDetails from './pages/orders-details/OrdersDetails';
+import Manage from './pages/Manage/Manage';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
       <Route path="/seller">
         <Route path="orders" element={ <Orders /> } />
         <Route path="orders/:id" element={ <OrdersDetails /> } />
+      </Route>
+      <Route path="/admin">
+        <Route path="manage" element={ <Manage /> } />
       </Route>
     </Routes>
   );
