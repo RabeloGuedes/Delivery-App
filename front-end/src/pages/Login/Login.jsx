@@ -26,7 +26,7 @@ export default function Login() {
       } else if (role?.data === 'seller') {
         navigate(`/${role?.data}/orders`);
       } else if (role?.data === 'administrator') {
-        navigate('/administrator');
+        navigate('/admin/manage');
       }
     };
     getRole();
