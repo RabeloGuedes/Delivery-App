@@ -3,68 +3,14 @@ import PropTypes from 'prop-types';
 import MainContext from '../context/MainContext';
 
 function MainProvider({ children }) {
-  const [user, setUser] = useState('');
+  const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
-  // const [orders, setOrders] = useState([]);
-  const [orders, setOrders] = useState([
-    { orderId: 1, delivetyStatus: 'Entregue', orderDate: '01/01/2021', orderPrice: 11 },
-    { orderId: 2, delivetyStatus: 'Entregue', orderDate: '01/02/2021', orderPrice: 12 },
-    { orderId: 3, delivetyStatus: 'Entregue', orderDate: '01/04/2021', orderPrice: 14 },
-  ]);
-
-  // const [selectedListItems, setSelectedListItems] = useState('');
-  // const [searchItem, setSearchItem] = useState('');
-  // const [btnStatus, setBtnStatus] = useState(true);
-  // const [cartItems, setCartItem] = useState([]);
-  // const [categorySelected, setCategorySelected] = useState([]);
-
-  // function addToCart(item) {
-  //   if (cartItems.length === 0) {
-  //     setCartItem([...cartItems, { itemAmount: 1,  itemProduct: item}])
-  //   } const isTheProductThere = cartItems.some(({ itemProduct: { id } }) => id === item.id);
-  //   if (isTheProductThere) {
-  //     const updateProducts = cartItems.map((cartItem) => {
-  //       if (cartItem.itemProduct.id === item.id) {
-  //         return ({
-  //           itemAmount: cartItem.itemAmount + 1,
-  //           itemProduct: item,
-  //         })
-  //       } else return cartItem;
-  //     });
-  //     setCartItem(updateProducts);
-  //   } else {
-  //     setCartItem([...cartItems, { itemAmount: 1,  itemProduct: item}])
-  //   }
-  // };
-
-  // function removeFromCart(item) {
-  //   console.log('item', item);
-  //   if (cartItems[cartItems.indexOf(item)].itemAmount > 1) {
-  //     const updateProducts = cartItems.map((cartItem) => {
-  //       if (cartItem.itemProduct.id === item.itemProduct.id ) {
-  //         return ({
-  //           itemAmount: cartItem.itemAmount -1,
-  //           itemProduct: item.itemProduct,
-  //         })
-  //       } else return cartItem;
-  //     });
-  //     setCartItem(updateProducts);
-  //   } else {
-  //     setCartItem(cartItems.filter((cartItem) => cartItem.itemProduct.id !== item.itemProduct.id));
-  //   }
-  // };
-  // function delete(item) {
-  // console.log('item', item);
-  // setCartItem(cartItems.filter((cartItem) => cartItem.itemProduct.id !== item.itemProduct.id));
-  // };
   const value = useMemo(() => ({
-    user,
-    setUser,
+    users,
+    setUsers,
     products,
     setProducts,
-    orders,
-    setOrders,
-  }), [user, products, orders]);
+  }), [users, products]);
 
   return (
     <MainContext.Provider value={ value }>
@@ -78,17 +24,3 @@ MainProvider.propTypes = {
 };
 
 export default MainProvider;
-
-// selectedListItems,
-// setSelectedListItems,
-// searchItem,
-// setSearchItem,
-// cartItems,
-// setCartItem,
-// addToCart,
-// removeFromCart,
-// deleteFromCart,
-// btnStatus,
-// setBtnStatus,
-// categorySelected,
-// setCategorySelected,
