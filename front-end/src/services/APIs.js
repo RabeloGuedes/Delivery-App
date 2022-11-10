@@ -45,7 +45,7 @@ const isTheUserAuthenticated = async () => {
 
 const getSaleById = async (id) => apiBase.get(`/customer/orders/${id}`);
 
-const getUsers = async () => { 
+const getUsers = async () => {
   const user = JSON.parse(localStorage.getItem('user'));
   try {
     if (user?.token) {
@@ -55,6 +55,36 @@ const getUsers = async () => {
       );
     } return null;
   } catch (error) {
+    return null;
+  }
+};
+
+const deleteUser = async (id) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  try {
+    if (user?.token) {
+      return apiBase.delete(
+        `/admin/manage/delete/user/${id}`,
+        { headers: { Authorization: user.token } },
+      );
+    } return null;
+  } catch (error) {
+    return null;
+  }
+};
+
+const registerNewUser = async ({ name, email, password, role }) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  try {
+    if (user?.token) {
+      return apiBase.post(
+        '/admin/manage/register',
+        { name, email, password, role },
+        { headers: { Authorization: user.token } },
+      );
+    } return null;
+  } catch (error) {
+    console.log(error.message);
     return null;
   }
 };
@@ -77,4 +107,6 @@ export {
   getOrdersBySellerId,
   isTheUserAuthenticated,
   updateStatus,
+  deleteUser,
+  registerNewUser,
 };

@@ -1,49 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Proptypes from 'prop-types';
+import Input from '../Input/Input';
+import { registerNewUser, getUsers } from '../../services/APIs';
 
-export default function AdminForm() {
+export default function AdminForm({ setUsers }) {
+  const [inputsValues, setInputsValues] = useState({});
+
+  const inputs = [
+    {
+      id: 1,
+      name: 'name',
+      type: 'text',
+      placeholder: 'John Doe',
+      dataTestid: 'admin_manage__input-name',
+      required: true,
+    },
+    {
+      id: 2,
+      name: 'email',
+      type: 'email',
+      placeholder: 'Johndoe@email.com',
+      dataTestid: 'admin_manage__input-email',
+      required: true,
+    },
+    {
+      id: 3,
+      name: 'password',
+      type: 'password',
+      placeholder: '******',
+      dataTestid: 'admin_manage__input-password',
+      required: true,
+    },
+  ];
+
+  const handleChange = ({ target }) => {
+    setInputsValues((prevState) => ({
+      ...prevState,
+      [target.name]: target.value,
+    }));
+  };
+
+  const createUser = async () => {
+    await registerNewUser({ ...inputsValues });
+    setInputsValues({ name: '', email: '', password: '', role: '' });
+    const users = await getUsers();
+    console.log(users);
+    setUsers(users.data);
+  };
+
   return (
     <div className="register">
       <div>
-        <label htmlFor="name">
-          Nome:
-          {' '}
-          <input
-            id="name"
-            data-testid="admin_manage__input-name"
-            type="text"
-            // onChange={ handleChange }
-            value="name"
-            // value={ name }
-          />
-        </label>
-        <label htmlFor="email">
-          Email:
-          {' '}
-          <input
-            id="email"
-            data-testid="admin_manage__input-email"
-            type="text"
-            // onChange={ handleChange }
-            value="email"
-            // value={ email }
-          />
-        </label>
-        <label htmlFor="password">
-          Senha:
-          {' '}
-          <input
-            id="password"
-            data-testid="admin_manage__input-password"
-            type="password"
-            // onChange={ handleChange }
-            value="password"
-            // value={ password }
-          />
-        </label>
+        {
+          inputs.map((input) => (
+            <Input
+              key={ input.id }
+              onChange={ handleChange }
+              value={ inputsValues[input.name] }
+              { ...input }
+            />
+          ))
+        }
         <select
           id="role"
-          // onChange={ handleChange }
+          name="role"
+          onChange={ handleChange }
           data-testid="admin_manage__select-role"
         >
           <option value="seller">Vendedor</option>
@@ -54,7 +75,7 @@ export default function AdminForm() {
           data-testid="admin_manage__button-register"
           type="button"
           // disabled={ disabled }
-          // onClick={ createUser }
+          onClick={ createUser }
         >
           CADASTRAR
         </button>

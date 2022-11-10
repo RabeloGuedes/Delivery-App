@@ -20,14 +20,10 @@ export default function Manage() {
   return (
     <div>
       <NavBar />
-      {/* {console.log(users)} */}
+      <AdminForm setUsers={ setUsers } />
       { (users?.length > 0)
-        && (
-          <>
-            <AdminForm />
-            <AdminTable users={ users } />
-          </>
-        )}
+        ? <AdminTable users={ users } setUsers={ setUsers } />
+        : <p> Não há usuários cadastrados. </p> }
     </div>
   );
 }

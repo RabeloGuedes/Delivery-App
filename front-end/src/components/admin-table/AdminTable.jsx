@@ -1,7 +1,8 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import { deleteUser } from '../../services/APIs';
 
-export default function AdminTable({ users }) {
+export default function AdminTable({ users, setUsers }) {
   // console.log(users);
   function geRows() {
     return (
@@ -31,6 +32,10 @@ export default function AdminTable({ users }) {
             <button
               type="button"
               data-testid={ `admin_manage__element-user-table-remove-${index}` }
+              onClick={ async () => {
+                await deleteUser(user.id);
+                setUsers(users.filter(({ id }) => user.id !== id));
+              } }
             >
               EXCLUIR
             </button>
