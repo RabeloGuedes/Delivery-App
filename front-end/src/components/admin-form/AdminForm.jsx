@@ -5,7 +5,9 @@ import { registerNewUser, getUsers } from '../../services/APIs';
 import MainContext from '../../context/MainContext';
 
 export default function AdminForm() {
-  const [inputsValues, setInputsValues] = useState({});
+  const [inputsValues, setInputsValues] = useState(
+    { name: '', email: '', password: '', role: 'customer' },
+  );
   const { setUsers } = useContext(MainContext);
 
   const inputs = [
@@ -42,12 +44,20 @@ export default function AdminForm() {
     }));
   };
 
+  const handleSubmit = async () => {
+    const formInputs = document.querySelectorAll('input');
+    formInputs.forEach((input) => {
+      input.value = '';
+    });
+  };
+
   const createUser = async () => {
     await registerNewUser({ ...inputsValues });
     setInputsValues({ name: '', email: '', password: '', role: '' });
     const users = await getUsers();
     console.log(users);
     setUsers(users.data);
+    handleSubmit();
   };
 
   return (
@@ -69,9 +79,9 @@ export default function AdminForm() {
           onChange={ handleChange }
           data-testid="admin_manage__select-role"
         >
+          <option value="customer">Customer</option>
           <option value="seller">Vendedor</option>
           <option value="administrator">Admin</option>
-          <option value="customer">Customer</option>
         </select>
         <button
           data-testid="admin_manage__button-register"
