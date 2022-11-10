@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Proptypes from 'prop-types';
 import Input from '../Input/Input';
 import { registerNewUser, getUsers } from '../../services/APIs';
+import MainContext from '../../context/MainContext';
 
-export default function AdminForm({ setUsers }) {
+export default function AdminForm() {
   const [inputsValues, setInputsValues] = useState({});
+  const { setUsers } = useContext(MainContext);
 
   const inputs = [
     {

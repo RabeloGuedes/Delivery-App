@@ -1,9 +1,10 @@
-import React from 'react';
+import { useContext } from 'react';
 import Proptypes from 'prop-types';
 import { deleteUser } from '../../services/APIs';
+import MainContext from '../../context/MainContext';
 
-export default function AdminTable({ users, setUsers }) {
-  // console.log(users);
+export default function AdminTable() {
+  const { users, setUsers } = useContext(MainContext);
   function geRows() {
     return (
       users.map((user, index) => (
@@ -47,7 +48,6 @@ export default function AdminTable({ users, setUsers }) {
 
   return (
     <div className="OrderTable">
-      {/* <table border="1"> */}
       <table>
         <thead>
           <tr>
