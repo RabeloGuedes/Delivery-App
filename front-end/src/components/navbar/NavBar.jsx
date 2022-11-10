@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import StyledNavBar from './StyledNavBar';
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ export default function NavBar() {
   const role = pathname.split('/')[1];
 
   return (
-    <nav>
+    <StyledNavBar>
       <div className="nav-left">
         { role === 'customer' && (
           <>
@@ -66,10 +67,9 @@ export default function NavBar() {
         className="nav-right"
         data-testid="customer_products__element-navbar-user-full-name"
       >
-        <h1>{ JSON.parse(localStorage.getItem('user')).name }</h1>
+        <h3>{ JSON.parse(localStorage.getItem('user')).name }</h3>
         <button
           type="button"
-          className="nav-button"
           data-testid="customer_products__element-navbar-link-logout"
           onClick={ () => {
             localStorage.clear();
@@ -79,6 +79,6 @@ export default function NavBar() {
           SAIR
         </button>
       </div>
-    </nav>
+    </StyledNavBar>
   );
 }
