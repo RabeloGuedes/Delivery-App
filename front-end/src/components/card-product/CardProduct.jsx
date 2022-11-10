@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import './CardProduct.css';
+import StyledCardProduct from './StyledCardProduct';
 
 export default function CardProduct(props) {
   const [quantity, setQuantity] = useState(0);
@@ -89,50 +89,55 @@ export default function CardProduct(props) {
   };
 
   return (
-    <div>
-      <img
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ thumbnail }
-        alt={ productName }
-      />
-      <p>
-        { id }
-      </p>
-      <p
-        data-testid={ `customer_products__element-card-title-${id}` }
-      >
-        { productName }
-      </p>
+    <StyledCardProduct>
+      <div className="img-container">
+        <img
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          src={ thumbnail }
+          alt={ productName }
+        />
+      </div>
+      <div className="footer">
+        <p
+          data-testid={ `customer_products__element-card-title-${id}` }
+        >
+          { productName }
+        </p>
+        <div className="buttons-container">
+          <button
+            className="left"
+            data-testid={ `customer_products__button-card-add-item-${id}` }
+            type="button"
+            onClick={ () => {
+              setQuantity((prev) => Number(prev) + 1);
+              addToCart();
+            } }
+          >
+            +
+          </button>
+          <input
+            data-testid={ `customer_products__input-card-quantity-${id}` }
+            type="number"
+            value={ quantity }
+            onChange={ (e) => handleQuantity(e) }
+            min={ 0 }
+          />
+          <button
+            className="right"
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
+            type="button"
+            onClick={ () => removeFromCart() }
+          >
+            -
+          </button>
+        </div>
+      </div>
       <p
         data-testid={ `customer_products__element-card-price-${id}` }
       >
         { price.replace('.', ',') }
       </p>
-      <button
-        data-testid={ `customer_products__button-card-add-item-${id}` }
-        type="button"
-        onClick={ () => {
-          setQuantity((prev) => Number(prev) + 1);
-          addToCart();
-        } }
-      >
-        ADICIONAR AO CARRINHO
-      </button>
-      <button
-        data-testid={ `customer_products__button-card-rm-item-${id}` }
-        type="button"
-        onClick={ () => removeFromCart() }
-      >
-        REMOVER DO CARRINHO
-      </button>
-      <input
-        data-testid={ `customer_products__input-card-quantity-${id}` }
-        type="number"
-        value={ quantity }
-        onChange={ (e) => handleQuantity(e) }
-        min={ 0 }
-      />
-    </div>
+    </StyledCardProduct>
   );
 }
 

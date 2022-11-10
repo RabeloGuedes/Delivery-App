@@ -4,19 +4,17 @@ import NavBar from '../../components/navbar/NavBar';
 import CardProduct from '../../components/card-product/CardProduct';
 import MainContext from '../../context/MainContext';
 import { getAllProducts } from '../../services/APIs';
+import StyledProducts from './StyledProducts';
 
 const populateProducts = (products, setCart) => products.map((product) => (
-  <div
+  <CardProduct
     key={ product.id }
-  >
-    <CardProduct
-      thumbnail={ product.url_image }
-      id={ product.id }
-      productName={ product.name }
-      price={ product.price }
-      setCart={ setCart }
-    />
-  </div>
+    thumbnail={ product.url_image }
+    id={ product.id }
+    productName={ product.name }
+    price={ product.price }
+    setCart={ setCart }
+  />
 ));
 
 export default function Products() {
@@ -40,9 +38,9 @@ export default function Products() {
   }, []);
 
   return (
-    <div>
+    <StyledProducts theme="--light-text">
       <NavBar />
-      <div className="">
+      <div className="products-container">
         { populateProducts(products, setCart) }
       </div>
       <button
@@ -60,6 +58,6 @@ export default function Products() {
           }
         </h3>
       </button>
-    </div>
+    </StyledProducts>
   );
 }
