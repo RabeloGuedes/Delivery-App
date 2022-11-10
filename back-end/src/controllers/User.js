@@ -18,7 +18,7 @@ const userController = {
     if (role !== 'administrator') {
       return res.status(401).json({ message: 'Unauthorized user' });
     }
-    const { id } = req.body;
+    const { id } = req.params;
     const { code, message } = await userService.deleteUser(id);
     res.status(code).json({ message });
   },
