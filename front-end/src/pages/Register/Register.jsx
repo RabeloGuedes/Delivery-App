@@ -30,6 +30,7 @@ export default function Register() {
       ...prevState,
       [target.name]: target.value,
     }));
+    setInvalidRegisterValues(false);
   };
 
   const toRegister = async (e) => {

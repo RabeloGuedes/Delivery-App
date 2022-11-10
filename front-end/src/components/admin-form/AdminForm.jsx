@@ -1,13 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Proptypes from 'prop-types';
 import Input from '../Input/Input';
 import { registerNewUser, getUsers } from '../../services/APIs';
 import MainContext from '../../context/MainContext';
 
+const SIX = 6;
+const TWELVE = 12;
+
 export default function AdminForm() {
-  const [inputsValues, setInputsValues] = useState(
-    { name: '', email: '', password: '', role: 'customer' },
-  );
+  const defaultValues = { name: '', email: '', password: '', role: 'customer' };
+  const [inputsValues, setInputsValues] = useState(defaultValues);
+
+  const [invalidRegisterValues, setInvalidRegisterValues] = useState(false);
+  const [isRegisterButtonDisabled, setIsRegisterButtonDisabled] = useState(false);
   const { setUsers } = useContext(MainContext);
 
   const inputs = [
@@ -42,6 +47,7 @@ export default function AdminForm() {
       ...prevState,
       [target.name]: target.value,
     }));
+    setInvalidRegisterValues(false);
   };
 
   const handleSubmit = async () => {
@@ -52,13 +58,26 @@ export default function AdminForm() {
   };
 
   const createUser = async () => {
-    await registerNewUser({ ...inputsValues });
-    setInputsValues({ name: '', email: '', password: '', role: '' });
-    const users = await getUsers();
-    console.log(users);
-    setUsers(users.data);
+    try {
+      await registerNewUser({ ...inputsValues });
+      setInputsValues(defaultValues);
+      const users = await getUsers();
+      console.log(users);
+      setUsers(users.data);
+    } catch (error) {
+      setInvalidRegisterValues(true);
+    }
     handleSubmit();
   };
+
+  useEffect(() => {
+    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    setIsRegisterButtonDisabled(() => (
+      !emailRegex.test(inputsValues.email)
+      || inputsValues.password.length < SIX
+      || inputsValues.name.length < TWELVE
+    ));
+  }, [inputsValues]);
 
   return (
     <div className="register">
@@ -86,17 +105,22 @@ export default function AdminForm() {
         <button
           data-testid="admin_manage__button-register"
           type="button"
-          // disabled={ disabled }
+          disabled={ isRegisterButtonDisabled }
           onClick={ createUser }
         >
           CADASTRAR
         </button>
       </div>
-      {/* <div data-testid="admin_manage__element-invalid-register">
-        {messageError ? (
-          <p>Campos inválidos!</p>
-        ) : null}
-      </div> */}
+      {
+        invalidRegisterValues
+          && (
+            <span
+              data-testid="common_register__element-invalid_register"
+            >
+              Invalid data!
+            </span>
+          )
+      }
     </div>
   );
 }
