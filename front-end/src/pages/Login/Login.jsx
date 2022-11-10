@@ -1,8 +1,7 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login, isTheUserAuthenticated } from '../../services/APIs';
 import Input from '../../components/Input/Input';
-import MainContext from '../../context/MainContext';
 
 const SIX = 6;
 
@@ -13,7 +12,6 @@ export default function Login() {
   });
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
   const [invalidEmail, setInvalidEmail] = useState(false);
-  const { setUser } = useContext(MainContext);
 
   const navigate = useNavigate();
 
@@ -59,7 +57,6 @@ export default function Login() {
     e.preventDefault();
     try {
       const { data } = await login(loginValues.email, loginValues.password);
-      setUser(data.name);
       localStorage.setItem('user', JSON.stringify({ ...data }));
       if (data.role === 'customer') {
         navigate('/customer/products');

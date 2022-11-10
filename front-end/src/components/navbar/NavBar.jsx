@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import MainContext from '../../context/MainContext';
 
 export default function NavBar() {
   const navigate = useNavigate();
-  const {
-    user,
-  } = useContext(MainContext);
   const { pathname } = useLocation();
   const role = pathname.split('/')[1];
 
@@ -70,14 +66,13 @@ export default function NavBar() {
         className="nav-right"
         data-testid="customer_products__element-navbar-user-full-name"
       >
-        <h1>{ user }</h1>
+        <h1>{ JSON.parse(localStorage.getItem('user')).name }</h1>
         <button
           type="button"
           className="nav-button"
           data-testid="customer_products__element-navbar-link-logout"
           onClick={ () => {
             localStorage.clear();
-            // localStorage.setItem('user', '');
             navigate('/login');
           } }
         >
