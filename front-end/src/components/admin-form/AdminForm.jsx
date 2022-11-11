@@ -113,13 +113,13 @@ export default function AdminForm() {
       </div>
       {
         invalidRegisterValues
-          && (
-            <span
-              data-testid="admin_manage__element-invalid-register"
-            >
-              Invalid data!
-            </span>
-          )
+        && (
+          <span
+            data-testid="admin_manage__element-invalid-register"
+          >
+            Invalid data!
+          </span>
+        )
       }
     </div>
   );

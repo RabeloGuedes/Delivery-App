@@ -98,3 +98,22 @@ const StyledCardProduct = styled.div`
 `;
 
 export default StyledCardProduct;
+
+// .bcl-r {
+//   position: fixed;
+//   background: repeating-linear-gradient(
+//     45deg,
+//     /* #111fff, */
+//     /* var(--primary), */
+//     rgb(253, 244, 200),
+//     var(--soft) 2px, /* importante */
+//     var(--soft) 5px,
+//     var(--soft) 2px /* importante */
+//     );
+//     width: 100%;
+//     height: 100vh;
+//     /* height: 10000px; */
+//     z-index: -1;
+//     /* top: 78px; */
+//     top: 0px;
+//   }
