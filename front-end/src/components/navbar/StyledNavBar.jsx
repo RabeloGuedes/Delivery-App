@@ -46,6 +46,7 @@ const StyledNavBar = styled.nav`
       height: 100%;
       font-weight: bolder;
       font-size: 1em;
+      cursor: pointer;
     }
   }
   

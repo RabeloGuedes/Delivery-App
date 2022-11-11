@@ -10,6 +10,8 @@ const StyledCardProduct = styled.div`
   border: 0.5px solid #00000029;
   box-shadow: 0 2px 2px #00000065;
   position: relative;
+  max-width: 200px;
+
 
   > p {
     position: absolute;
@@ -34,21 +36,23 @@ const StyledCardProduct = styled.div`
     > p {
       line-break: auto;
       text-align: center;
-      /* font-weight: bold; */
       font-size: 0.9em;
+      margin: 4px 0;
     }
-
   }
 
 
   .buttons-container {
     display: flex;
+    margin-bottom: 4px;
 
     button {
       padding: 5px;
       border: none;
       background-color: var(--primary-color);
       color: var(--light-text);
+      width: 25px;
+      font-weight: bolder;
     }
 
     .left {
@@ -60,36 +64,32 @@ const StyledCardProduct = styled.div`
 
 
     input {
-      width: 30px;
+      width: 50px;
       border : none;
       text-align: center; 
       border: 1px solid;
       border-color: var(--primary-color);
     }
+
+    input[type=number]::-webkit-inner-spin-button { 
+      -webkit-appearance: none;
+    }
+
+    input[type=number] { 
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
   }
 
   .img-container {
-    /* max-width: 359px;
-    width: 60%;
-    min-width: 200px; */
     display: flex;
     justify-content: center;
   }
 
-  /* img:nth-child(1) {
-    background-color : red;
-  } */
-
-
   img {
-    max-width: 359px;
-    /* width: 60%; */
+    max-width: 200px;
     min-width: 150px;
     height: 200px;
-    /* max-height: 359px; */
-
-    /* height: 100px; */
-    /* width: 100%; */
     background-color: var(--bg-light);
   }
   /* @media screen and (min-width: 400px) {

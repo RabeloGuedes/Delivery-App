@@ -16,7 +16,7 @@ const StyledProducts = styled.div`
     gap: 10px;
     background-color: var(${(props) => props.theme});
 
-    div:nth-child(1) {
+    /* div:nth-child(1) {
       div {
         img {
           height: 200px;
@@ -24,7 +24,7 @@ const StyledProducts = styled.div`
         }
       }
       
-    }
+    } */
   }
 `;
 
