@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../components/Input/Input';
 import { create } from '../../services/APIs';
+import StyledRegister from './StyledRegister';
 
 const SIX = 6;
 const TWELVE = 12;
@@ -47,6 +48,7 @@ export default function Register() {
   const inputs = [
     {
       id: 1,
+      label: 'Nome',
       name: 'name',
       type: 'text',
       placeholder: 'John Doe',
@@ -55,6 +57,7 @@ export default function Register() {
     },
     {
       id: 2,
+      label: 'Email',
       name: 'email',
       type: 'email',
       placeholder: 'Johndoe@email.com',
@@ -63,6 +66,7 @@ export default function Register() {
     },
     {
       id: 3,
+      label: 'Senha',
       name: 'password',
       type: 'password',
       placeholder: '******',
@@ -72,8 +76,12 @@ export default function Register() {
   ];
 
   return (
-    <section>
+    <StyledRegister
+      loginButtonColor={ isRegisterButtonDisabled ? (
+        'var(--primary-color-light)') : 'var(--primary-color)' }
+    >
       <form onSubmit={ (e) => toRegister(e) }>
+        <h2>Cadastre-se</h2>
         {
           inputs.map((input) => (
             <Input
@@ -85,6 +93,7 @@ export default function Register() {
           ))
         }
         <button
+          className="register-button"
           type="submit"
           data-testid="common_register__button-register"
           disabled={ isRegisterButtonDisabled }
@@ -102,6 +111,6 @@ export default function Register() {
           )
         }
       </form>
-    </section>
+    </StyledRegister>
   );
 }
