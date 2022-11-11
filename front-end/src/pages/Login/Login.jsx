@@ -96,6 +96,7 @@ export default function Login() {
         'var(--primary-color-light)') : 'var(--primary-color)' }
     >
       <form onSubmit={ (e) => toLogin(e) }>
+        <h2>Acesse sua conta</h2>
         { inputs.map((input) => (
           <Input
             key={ input.id }

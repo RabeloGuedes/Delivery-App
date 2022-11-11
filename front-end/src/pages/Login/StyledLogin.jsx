@@ -21,6 +21,11 @@ const StyledLogin = styled.section`
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     border: 0.5px solid var(--primary-color);
 
+    > h2 {
+      font-size: 2rem;
+      color: var(--dark-text);
+    }
+
     > span {
       color: #c51f1f;
     }
