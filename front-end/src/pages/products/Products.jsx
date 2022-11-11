@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ShoppingCart } from 'phosphor-react';
 import NavBar from '../../components/navbar/NavBar';
 import CardProduct from '../../components/card-product/CardProduct';
 import MainContext from '../../context/MainContext';
@@ -53,8 +54,9 @@ export default function Products() {
         <h3
           data-testid="customer_products__checkout-bottom-value"
         >
+          <ShoppingCart size={ 32 } />
           {
-            (Number(totalPrice)).toFixed(2).replace('.', ',')
+            `R$: ${(Number(totalPrice)).toFixed(2).replace('.', ',')}`
           }
         </h3>
       </button>
