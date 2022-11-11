@@ -59,10 +59,10 @@ const StyledCardProduct = styled.div`
     }
 
     .left {
-      border-radius: 5px 0 0 5px;
+      border-radius: 0 5px 5px 0;
     }
     .right {
-       border-radius: 0 5px 5px 0;
+       border-radius: 5px 0 0 5px;
     }
 
 

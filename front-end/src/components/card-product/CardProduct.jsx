@@ -105,15 +105,12 @@ export default function CardProduct(props) {
         </p>
         <div className="buttons-container">
           <button
-            className="left"
-            data-testid={ `customer_products__button-card-add-item-${id}` }
+            className="right"
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
             type="button"
-            onClick={ () => {
-              setQuantity((prev) => Number(prev) + 1);
-              addToCart();
-            } }
+            onClick={ () => removeFromCart() }
           >
-            +
+            -
           </button>
           <input
             data-testid={ `customer_products__input-card-quantity-${id}` }
@@ -123,12 +120,15 @@ export default function CardProduct(props) {
             min={ 0 }
           />
           <button
-            className="right"
-            data-testid={ `customer_products__button-card-rm-item-${id}` }
+            className="left"
+            data-testid={ `customer_products__button-card-add-item-${id}` }
             type="button"
-            onClick={ () => removeFromCart() }
+            onClick={ () => {
+              setQuantity((prev) => Number(prev) + 1);
+              addToCart();
+            } }
           >
-            -
+            +
           </button>
         </div>
       </div>

@@ -5,6 +5,23 @@ const StyledProducts = styled.div`
   flex-direction: column;
   gap: 10px;
   background-color: var(--light-text);
+  position: relative;
+
+  > button {
+    cursor: pointer;
+    width: 80px;
+    padding: 15px;
+    position: fixed;
+    bottom: 15px;
+    right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+
+    h3 {
+      color: var(--light-text)
+    }
+  }
 
 
   .products-container { 
