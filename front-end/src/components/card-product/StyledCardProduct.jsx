@@ -34,9 +34,11 @@ const StyledCardProduct = styled.div`
     width: 100%;
 
     > p {
-      line-break: auto;
+      width: 200px;
+      height: 45px;
+      overflow: hidden;
       text-align: center;
-      font-size: 0.9em;
+      font-size: 1.2em;
       margin: 4px 0;
     }
   }
@@ -53,6 +55,7 @@ const StyledCardProduct = styled.div`
       color: var(--light-text);
       width: 25px;
       font-weight: bolder;
+      cursor: pointer;
     }
 
     .left {
