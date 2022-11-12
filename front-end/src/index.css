@@ -8,19 +8,20 @@
 
 :root {
 
-  --bg-light: #e5e5e5;
 
-  --primary-color: #036b52;
+  --bg-light: #EBF2FA;
 
-  --secondary-color: #2fc18c;
+  --primary-color: #0075A2;
 
-  --tertiary-color: #421981;
+  --secondary-color: #06A77D;
 
-  --quaternary-color: #056cf9;
+  --tertiary-color: #06A77D;
 
-  --dark-text: #001813;
+  --quaternary-color: #f38896;
 
-  --light-text: #f2fffc;
+  --dark-text: #41393E;
+
+  --light-text: #f5f5f5;
 
 }
 

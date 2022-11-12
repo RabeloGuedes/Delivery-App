@@ -1,4 +1,6 @@
 import Proptypes from 'prop-types';
+import { Trash } from 'phosphor-react';
+import StyledCheckoutProduct from './StyledCheckoutProduct';
 
 export default function CheckoutProduct({
   id,
@@ -17,40 +19,52 @@ export default function CheckoutProduct({
   };
 
   return (
-    <div>
-      <p
-        data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
-      >
-        { index + 1 }
-      </p>
-      <p
-        data-testid={ `customer_checkout__element-order-table-name-${index}` }
-      >
-        { name }
-      </p>
-      <p
-        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
-      >
-        { quantity }
-      </p>
-      <p
-        data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
-      >
-        { Number(price).toFixed(2).replace('.', ',') }
-      </p>
-      <p
-        data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
-      >
-        { subTotal.toFixed(2).replace('.', ',') }
-      </p>
-      <button
-        data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-        type="button"
-        onClick={ removeItem }
-      >
-        REMOVER
-      </button>
-    </div>
+    <StyledCheckoutProduct key={ id }>
+      <td>
+        <p
+          data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
+        >
+          { index + 1 }
+        </p>
+      </td>
+      <td>
+        <p
+          data-testid={ `customer_checkout__element-order-table-name-${index}` }
+        >
+          { name }
+        </p>
+      </td>
+      <td>
+        <p
+          data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+        >
+          { quantity }
+        </p>
+      </td>
+      <td>
+        <p
+          data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+        >
+          { Number(price).toFixed(2).replace('.', ',') }
+        </p>
+      </td>
+      <td>
+        <p
+          data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+        >
+          { subTotal.toFixed(2).replace('.', ',') }
+        </p>
+      </td>
+      <td>
+        <button
+          data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+          type="button"
+          onClick={ removeItem }
+        >
+          <Trash size={ 32 } />
+        </button>
+      </td>
+    </StyledCheckoutProduct>
   );
 }
 
