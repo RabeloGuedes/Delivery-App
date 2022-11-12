@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login, isTheUserAuthenticated } from '../../services/APIs';
 import Input from '../../components/Input/Input';
+import StyledLogin from './StyledLogin';
 
 const SIX = 6;
+const FIVE_THOUSAND = 5000;
 
 export default function Login() {
   const [loginValues, setLoginValues] = useState({
@@ -37,6 +39,7 @@ export default function Login() {
   const inputs = [
     {
       id: 1,
+      label: 'Login',
       className: 'login-input',
       type: 'email',
       placeholder: 'your@email.com',
@@ -45,6 +48,7 @@ export default function Login() {
     },
     {
       id: 2,
+      label: 'Senha',
       className: 'login-input',
       type: 'password',
       placeholder: '******',
@@ -68,6 +72,9 @@ export default function Login() {
     } catch ({ message }) {
       if (message.includes('404')) {
         setInvalidEmail(true);
+        setTimeout(() => {
+          setInvalidEmail(false);
+        }, FIVE_THOUSAND);
       }
     }
   };
@@ -84,8 +91,12 @@ export default function Login() {
   };
 
   return (
-    <section>
+    <StyledLogin
+      loginButtonColor={ isLoginButtonDisabled ? (
+        'var(--primary-color-light)') : 'var(--primary-color)' }
+    >
       <form onSubmit={ (e) => toLogin(e) }>
+        <h2>Acesse sua conta</h2>
         { inputs.map((input) => (
           <Input
             key={ input.id }
@@ -95,11 +106,12 @@ export default function Login() {
           />
         ))}
         <button
+          className="login-button"
           type="submit"
           data-testid="common_login__button-login"
           disabled={ isLoginButtonDisabled }
         >
-          Entrar
+          LOGIN
         </button>
         {
           invalidEmail
@@ -110,6 +122,7 @@ export default function Login() {
             )
         }
         <button
+          className="register-button"
           type="button"
           data-testid="common_login__button-register"
           onClick={ goToRegistration }
@@ -117,6 +130,6 @@ export default function Login() {
           Ainda não tenho conta
         </button>
       </form>
-    </section>
+    </StyledLogin>
   );
 }

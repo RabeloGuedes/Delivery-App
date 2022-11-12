@@ -1,8 +1,0 @@
-.login-input ~ span {
-  color: red;
-  display: none;
-}
-
-.login-input:invalid ~ span {
-  display: block;
-}

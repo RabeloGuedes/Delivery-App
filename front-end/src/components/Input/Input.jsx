@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import './Input.css';
+import StyledInput from './StyledInput';
 
 export default function Input({
   name,
+  label,
   className,
   type,
   placeholder,
@@ -10,7 +11,8 @@ export default function Input({
   onChange,
 }) {
   return (
-    <label htmlFor={ type }>
+    <StyledInput htmlFor={ type }>
+      <h4>{ label }</h4>
       <input
         name={ name }
         className={ className }
@@ -20,7 +22,7 @@ export default function Input({
         data-testid={ dataTestid }
         onChange={ onChange }
       />
-    </label>
+    </StyledInput>
   );
 }
 

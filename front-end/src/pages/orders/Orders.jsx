@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import NavBar from '../../components/navbar/NavBar';
 import CardOrders from '../../components/card-orders/CardOrders';
 import { getOrdersByUserId, getOrdersBySellerId } from '../../services/APIs';
+import StyledOrders from './StyledOrders';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -28,7 +29,7 @@ export default function Orders() {
   return (
     <div>
       <NavBar />
-      <div className="card-orders-container">
+      <StyledOrders>
         {
           orders.map((item, index) => (
             <CardOrders
@@ -38,7 +39,7 @@ export default function Orders() {
             />
           ))
         }
-      </div>
+      </StyledOrders>
     </div>
   );
 }
