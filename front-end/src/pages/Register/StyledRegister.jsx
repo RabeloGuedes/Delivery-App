@@ -9,7 +9,7 @@ const StyledRegister = styled.section`
   align-items: center;
 
   > form {
-    width: 100%;
+    width: 80%;
     max-width: 450px;
     height: 450px;
     background-color: var(--light-text);
