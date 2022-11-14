@@ -3,6 +3,9 @@ import { useState } from 'react';
 import moment from 'moment/moment';
 import { useLocation } from 'react-router-dom';
 import { updateStatus } from '../../services/APIs';
+import StyledDetailsHeader from './StyledDetailsHeader';
+import addZeroes from '../../utils/utils';
+// import OrderTable from '../order-table/order-table';
 
 moment.locale('pt-br');
 
@@ -14,6 +17,7 @@ export default function OrderDetailsHeader({
   status,
   sellers: { name },
 }) {
+  const FOUR = 4;
   const { pathname } = useLocation();
   const role = pathname.split('/')[1];
   console.log(role);
@@ -23,36 +27,42 @@ export default function OrderDetailsHeader({
   const headerElements = [
     {
       dataTestId: `${role}_order_details__element-order-details-label-order-id`,
-      text: `${id}`,
+      text: `PEDIDO ${addZeroes(id, FOUR)}`,
       shouldRender: true,
-    },
-    {
-      dataTestId: `${role}_order_details__element-order-total-price`,
-      text: `${Number(totalPrice).toFixed(2).replace('.', ',')}`,
-      shouldRender: true,
-    },
-    {
-      dataTestId: `${role}_order_details__element-order-details-label-order-date`,
-      text: `${moment(saleDate).format('DD/MM/YYYY')}`,
-      shouldRender: true,
-    },
-    {
-      // index para cliente
-      dataTestId: `${role}_order_details__element-order-details-label-delivery-status`,
-      text: `${currentStatus}`,
-      shouldRender: role === 'seller',
-    },
-    {
-      // index para cliente
-      dataTestId: `${role}_order_details__element-order-details-label-delivery-status`,
-      text: `${currentStatus}`,
-      shouldRender: role === 'customer',
+      className: 'order',
     },
     {
       // só para cliente
       dataTestId: `${role}_order_details__element-order-details-label-seller-name`,
       text: `${name}`,
       shouldRender: role === 'customer',
+      className: 'seller',
+    },
+    {
+      dataTestId: `${role}_order_details__element-order-total-price`,
+      text: `R$ ${Number(totalPrice).toFixed(2).replace('.', ',')}`,
+      shouldRender: true,
+      className: 'date',
+    },
+    {
+      dataTestId: `${role}_order_details__element-order-details-label-order-date`,
+      text: `${moment(saleDate).format('DD/MM/YYYY')}`,
+      shouldRender: true,
+      className: 'date',
+    },
+    {
+      // index para cliente
+      dataTestId: `${role}_order_details__element-order-details-label-delivery-status`,
+      text: `${currentStatus}`,
+      shouldRender: role === 'seller',
+      className: 'order',
+    },
+    {
+      // index para cliente
+      dataTestId: `${role}_order_details__element-order-details-label-delivery-status`,
+      text: `${currentStatus}`,
+      shouldRender: role === 'customer',
+      className: 'status',
     },
   ];
 
@@ -70,14 +80,15 @@ export default function OrderDetailsHeader({
   };
 
   return (
-    <div>
+    <StyledDetailsHeader>
       {
-        headerElements.map(({ shouldRender, dataTestId, text }) => {
+        headerElements.map(({ shouldRender, dataTestId, text, className }) => {
           if (shouldRender) {
             return (
               <p
                 key={ dataTestId }
                 data-testid={ dataTestId }
+                className={ className }
               >
                 { text }
               </p>
@@ -116,7 +127,8 @@ export default function OrderDetailsHeader({
           </button>
         </>
       )}
-    </div>
+      {/* <OrderTable /> */}
+    </StyledDetailsHeader>
   );
 }
 
