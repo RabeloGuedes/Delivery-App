@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import moment from 'moment/moment';
 import Proptypes from 'prop-types';
 import StyledCardOrders from './StyledCardOrders';
+import addZeroes from '../../utils/utils';
 
 moment.locale('pt-br');
 
@@ -19,18 +20,17 @@ export default function CardOrders({
   const { pathname } = useLocation();
   const role = pathname.split('/')[1];
   const FOUR = 4;
-  const FIVE = 5;
 
-  function addZeroes(num, len) {
-    let numberWithZeroes = String(num);
-    let counter = numberWithZeroes.length;
+  // function addZeroes(num, len) {
+  //   let numberWithZeroes = String(num);
+  //   let counter = numberWithZeroes.length;
 
-    while (counter < len) {
-      numberWithZeroes = `0${numberWithZeroes}`;
-      counter += 1;
-    }
-    return numberWithZeroes;
-  }
+  //   while (counter < len) {
+  //     numberWithZeroes = `0${numberWithZeroes}`;
+  //     counter += 1;
+  //   }
+  //   return numberWithZeroes;
+  // }
 
   return (
     <StyledCardOrders

@@ -4,6 +4,7 @@ import NavBar from '../../components/navbar/NavBar';
 import OrderDetailsHeader from '../../components/order-details-header/OrderDetailsHeader';
 import OrderTable from '../../components/order-table/order-table';
 import { getSaleById } from '../../services/APIs';
+import StyledOrdersDetails from './StyledOrdersDetails';
 
 export default function OrdersDetails() {
   const { id } = useParams();
@@ -19,15 +20,17 @@ export default function OrdersDetails() {
   }, [id]);
 
   return (
-    <div>
+    <>
       <NavBar />
-      { (customerData?.sale?.length > 0)
-        && (
-          <>
-            <OrderDetailsHeader { ...customerData } />
-            <OrderTable { ...customerData } />
-          </>
-        )}
-    </div>
+      <StyledOrdersDetails>
+        { (customerData?.sale?.length > 0)
+            && (
+              <>
+                <OrderDetailsHeader { ...customerData } />
+                <OrderTable { ...customerData } />
+              </>
+            )}
+      </StyledOrdersDetails>
+    </>
   );
 }

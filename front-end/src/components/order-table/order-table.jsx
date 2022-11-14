@@ -1,9 +1,9 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
+import StyledOrderTable from './StyledOrderTable';
 
 export default function OrderTable({ sale }) {
-  // console.log(sale);
   const { pathname } = useLocation();
   const role = pathname.split('/')[1];
   function geRows() {
@@ -47,8 +47,7 @@ export default function OrderTable({ sale }) {
   }
 
   return (
-    <div className="OrderTable">
-      {/* <table border="1"> */}
+    <StyledOrderTable>
       <table>
         <thead>
           <tr>
@@ -65,7 +64,7 @@ export default function OrderTable({ sale }) {
           )}
         </tbody>
       </table>
-    </div>
+    </StyledOrderTable>
   );
 }
 
