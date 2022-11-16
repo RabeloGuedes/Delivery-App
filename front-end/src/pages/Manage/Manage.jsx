@@ -3,6 +3,7 @@ import NavBar from '../../components/navbar/NavBar';
 import AdminTable from '../../components/admin-table/AdminTable';
 import AdminForm from '../../components/admin-form/AdminForm';
 import MainContext from '../../context/MainContext';
+import StyledManage from './StyledManage';
 
 import { getUsers } from '../../services/APIs';
 
@@ -21,12 +22,14 @@ export default function Manage() {
   }, [setUsers, users]);
 
   return (
-    <div>
+    <>
       <NavBar />
-      <AdminForm />
-      { (users?.length > 0)
-        ? <AdminTable users={ users } setUsers={ setUsers } />
-        : <p> Não há usuários cadastrados. </p> }
-    </div>
+      <StyledManage>
+        <AdminForm />
+        { (users?.length > 0)
+          ? <AdminTable users={ users } setUsers={ setUsers } />
+          : <p> Não há usuários cadastrados. </p> }
+      </StyledManage>
+    </>
   );
 }

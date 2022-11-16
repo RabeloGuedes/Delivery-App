@@ -54,7 +54,7 @@ const StyledCheckoutProduct = styled.tr`
 
   button {
     width: 100%;
-    /* background-color: var(--tertiary-color); */
+    padding: 2px;
     background-color: var(--quaternary-color);
     cursor: pointer;
     border: none;

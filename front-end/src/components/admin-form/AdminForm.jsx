@@ -3,6 +3,7 @@ import Proptypes from 'prop-types';
 import Input from '../Input/Input';
 import { registerNewUser, getUsers } from '../../services/APIs';
 import MainContext from '../../context/MainContext';
+import StyledAdminForm from './StyledAdminForm';
 
 const SIX = 6;
 const TWELVE = 12;
@@ -20,7 +21,7 @@ export default function AdminForm() {
       id: 1,
       name: 'name',
       type: 'text',
-      placeholder: 'John Doe',
+      placeholder: 'Nome',
       dataTestid: 'admin_manage__input-name',
       required: true,
     },
@@ -28,7 +29,7 @@ export default function AdminForm() {
       id: 2,
       name: 'email',
       type: 'email',
-      placeholder: 'Johndoe@email.com',
+      placeholder: 'Email',
       dataTestid: 'admin_manage__input-email',
       required: true,
     },
@@ -36,7 +37,7 @@ export default function AdminForm() {
       id: 3,
       name: 'password',
       type: 'password',
-      placeholder: '******',
+      placeholder: 'Senha',
       dataTestid: 'admin_manage__input-password',
       required: true,
     },
@@ -80,11 +81,13 @@ export default function AdminForm() {
   }, [inputsValues]);
 
   return (
-    <div className="register">
+    <StyledAdminForm className="register">
+      <h2>Cadastrar novo usuário</h2>
       <div>
         {
           inputs.map((input) => (
             <Input
+              className="InputsAdmin"
               key={ input.id }
               onChange={ handleChange }
               value={ inputsValues[input.name] }
@@ -98,6 +101,7 @@ export default function AdminForm() {
           onChange={ handleChange }
           data-testid="admin_manage__select-role"
         >
+          <option value="customer">Tipo</option>
           <option value="customer">Customer</option>
           <option value="seller">Vendedor</option>
           <option value="administrator">Admin</option>
@@ -121,7 +125,7 @@ export default function AdminForm() {
           </span>
         )
       }
-    </div>
+    </StyledAdminForm>
   );
 }
 
