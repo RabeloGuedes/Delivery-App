@@ -12,6 +12,8 @@ const StyledCardOrders = styled.button`
   max-width: 400px;
   height: 100px;
   overflow: hidden;
+  padding: 20px;
+  gap: 10px;
 
   .order {
     display: flex;
@@ -26,13 +28,14 @@ const StyledCardOrders = styled.button`
   .top {
     display: flex;
     font-weight: bold;
+    gap: 10px;
   }
 
   .main {
     display: flex;
     flex: 4 1 auto;
     flex-direction: column;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     padding: 5px;
   }
 
@@ -40,8 +43,9 @@ const StyledCardOrders = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: yellowgreen;
+    background-color: var(--secondary-color);
     min-width: 100px;
+    max-width: 100px;
     border-radius: 5px;
     margin: 4px 2px;
     padding: 0 16px ;
@@ -56,9 +60,9 @@ const StyledCardOrders = styled.button`
       border-radius: 5px;
       margin: 4px;
       padding: 4px 16px;
-      background-color: var(--light-text);
+      background-color: var(--tertiary-color);
+      color: var(--light-text);
     }
-
   }
 
   p {

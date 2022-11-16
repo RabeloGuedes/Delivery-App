@@ -24,10 +24,11 @@ const StyledAdminForm = styled.div`
 
   button {
     background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     border-radius: 5px;
     width: 25%;
     padding: 15px;
-    color: var(--bg-light);
+    color: var(--bg-dark);
     font-size: 1.1rem;
     font-weight: bold;
     border: none;
@@ -48,6 +49,11 @@ const StyledAdminForm = styled.div`
     margin-top: 5px;
     margin-bottom: 5px;
     background-color: #fff;
+  }
+
+  span {
+    margin-top: 15px;
+    color: red;
   }
 
 `;

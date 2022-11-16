@@ -24,12 +24,14 @@ export default function OrdersDetails() {
       <NavBar />
       <StyledOrdersDetails>
         { (customerData?.sale?.length > 0)
-            && (
-              <>
-                <OrderDetailsHeader { ...customerData } />
-                <OrderTable { ...customerData } />
-              </>
-            )}
+              && (
+                <>
+                  <OrderDetailsHeader { ...customerData } />
+                  <div className="table-container">
+                    <OrderTable { ...customerData } />
+                  </div>
+                </>
+              )}
       </StyledOrdersDetails>
     </>
   );

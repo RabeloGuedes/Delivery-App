@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 const StyledOrderTable = styled.div`
-background-color: var(--light-text);
+background-color: #fff;
+width: 100%;
+padding: 30px;
 
 .Even {
   background-color: var(--row-table-dark);

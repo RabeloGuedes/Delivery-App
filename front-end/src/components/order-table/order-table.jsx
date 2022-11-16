@@ -32,14 +32,14 @@ export default function OrderTable({ sale }) {
             data-testid={ `${role}_order_details
             __element-order-table-unit-price-${index}` }
           >
-            {(itemSale.price).replace('.', ',')}
+            {`R$ ${(itemSale.price).replace('.', ',')}`}
           </td>
           <td
             data-testid={ `${role}_order_details
             __element-order-table-sub-total-${index}` }
           >
-            {(itemSale.sales_products.quantity
-                  * itemSale.price).toFixed(2).replace('.', ',')}
+            { `R$ ${(itemSale.sales_products.quantity
+                  * itemSale.price).toFixed(2).replace('.', ',')}` }
           </td>
         </tr>
       ))
@@ -53,7 +53,7 @@ export default function OrderTable({ sale }) {
           <tr>
             <th>Item</th>
             <th>Descrição</th>
-            <th>Quantitade</th>
+            <th>Quantidade</th>
             <th>Valor Unitário</th>
             <th>Subtotal</th>
           </tr>

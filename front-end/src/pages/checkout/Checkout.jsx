@@ -104,7 +104,7 @@ export default function Checkout() {
                 onChange={ (e) => setDeliveryNumber(e.target.value) }
                 id="adress-number"
                 type="number"
-                placeholder="100"
+                placeholder="Número da Casa"
               />
             </label>
           </div>
