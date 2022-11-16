@@ -44,6 +44,7 @@ const StyledCheckout = styled.section`
       background-color: #fff;
       width: 90%;
       text-align: center;
+      height: 100px;
     }
   }
 
@@ -106,11 +107,12 @@ const StyledCheckout = styled.section`
     }
 
     button {
-      background-color: var(--primary-color);
+      /* background-color: var(--primary-color); */
+      background-color: var(--secondary-color);
       border-radius: 5px;
       width: 25%;
       padding: 15px;
-      color: var(--bg-light);
+      color: var(--bg-dark);
       font-size: 1.2rem;
       font-weight: bold;
       border: none;

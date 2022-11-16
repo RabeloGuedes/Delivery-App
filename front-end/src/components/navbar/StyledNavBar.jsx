@@ -17,11 +17,13 @@ const StyledNavBar = styled.nav`
       display: flex;
       align-items: center;
       background-color: var(--secondary-color);
+      background-color: var(--tertiary-color);
       padding: 10px;
       height: 100%;
 
       a {
         color: var(--dark-text);
+        color: var(--light-text);
         font-weight: bold;
       }
     }
@@ -40,6 +42,7 @@ const StyledNavBar = styled.nav`
       border: none;
       display: flex;
       align-items: center;
+      /* background-color: var(--secondary-color); */
       background-color: var(--quaternary-color);
       color: var(--light-text);
       padding: 10px;

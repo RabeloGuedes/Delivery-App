@@ -12,17 +12,21 @@
 
   --bg-light: #EBF2FA;
 
-  --primary-color: #0075A2;
+  --primary-color: #005070;
 
-  --secondary-color: #06A77D;
+  --secondary-color: yellowgreen;
 
-  --tertiary-color: #06A77D;
+  --tertiary-color: #0075A2;
 
   --quaternary-color: #f38896;
 
   --dark-text: #41393E;
 
   --light-text: #f5f5f5;
+
+  --row-table-light: #e8e8e8;
+
+  --row-table-dark: #dcdada;
 
 }
 

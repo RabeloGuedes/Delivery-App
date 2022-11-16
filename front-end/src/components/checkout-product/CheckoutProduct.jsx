@@ -10,6 +10,7 @@ export default function CheckoutProduct({
   subTotal,
   setCart,
   index,
+  className,
 }) {
   const removeItem = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
@@ -19,7 +20,7 @@ export default function CheckoutProduct({
   };
 
   return (
-    <StyledCheckoutProduct key={ id }>
+    <StyledCheckoutProduct key={ id } className={ className }>
       <td>
         <p
           data-testid={ `customer_checkout__element-order-table-item-number-${index}` }

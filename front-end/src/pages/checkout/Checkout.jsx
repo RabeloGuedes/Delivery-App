@@ -55,6 +55,7 @@ export default function Checkout() {
               { ...item }
               key={ item.id }
               index={ index }
+              className={ index % 2 === 0 ? 'Even' : 'Odd' }
             />
           ))}
         </table>
