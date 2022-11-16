@@ -1,7 +1,9 @@
 import { useContext } from 'react';
 import Proptypes from 'prop-types';
+import { Trash } from 'phosphor-react';
 import { deleteUser } from '../../services/APIs';
 import MainContext from '../../context/MainContext';
+import StyledAdminTable from './StyledAdminTable';
 
 export default function AdminTable() {
   const { users, setUsers } = useContext(MainContext);
@@ -27,7 +29,7 @@ export default function AdminTable() {
           <td
             data-testid={ `admin_manage__element-user-table-role-${index}` }
           >
-            {user.type}
+            {user.role}
           </td>
           <td>
             <button
@@ -38,7 +40,7 @@ export default function AdminTable() {
                 setUsers(users.filter(({ id }) => user.id !== id));
               } }
             >
-              EXCLUIR
+              <Trash size={ 30 } />
             </button>
           </td>
         </tr>
@@ -47,7 +49,7 @@ export default function AdminTable() {
   }
 
   return (
-    <div className="OrderTable">
+    <StyledAdminTable className="OrderTable">
       <table>
         <thead>
           <tr>
@@ -64,7 +66,7 @@ export default function AdminTable() {
           )}
         </tbody>
       </table>
-    </div>
+    </StyledAdminTable>
   );
 }
 

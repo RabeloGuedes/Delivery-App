@@ -61,7 +61,7 @@ export default function CheckoutProduct({
           type="button"
           onClick={ removeItem }
         >
-          <Trash size={ 32 } />
+          <Trash size={ 30 } />
         </button>
       </td>
     </StyledCheckoutProduct>
