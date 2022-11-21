@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const StyledRegister = styled.section`
   width: 100%;
@@ -36,7 +36,7 @@ const StyledRegister = styled.section`
       border: none;
       border-radius: 5px;
       color: var(--light-text);
-      cursor: pointer;
+      cursor: ${(props) => props.loginButtonCursor};
       background-color: ${(props) => props.loginButtonColor};
     }
   }
