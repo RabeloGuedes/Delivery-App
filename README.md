@@ -119,9 +119,6 @@ npm run dev # Sobe o front na porta 3000 e o back na 3001
 ## 💬 Contatos
 
 <div align="center" style="display: inline_block">
-  <a href="https://rabeloguedes.github.io" target="_blank">
-    <img height="28rem" src="https://img.shields.io/badge/my_portfolio-3fc337?style=for-the-badge" target="_blank">
-  </a> 
   <a href="https://www.linkedin.com/in/al%C3%AA-emmanuel-rabelo-guedes/" target="_blank">
     <img height="28rem" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
   </a> 
@@ -249,9 +246,6 @@ npm run db:reset # runs export NODE_ENV=development
 ## 💬 Contact
 
 <div align="center" style="display: inline_block">
-  <a href="https://rabeloguedes.github.io" target="_blank">
-    <img height="28rem" src="https://img.shields.io/badge/my_portfolio-3fc337?style=for-the-badge" target="_blank">
-  </a> 
   <a href="https://www.linkedin.com/in/al%C3%AA-emmanuel-rabelo-guedes/" target="_blank">
     <img height="28rem" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
   </a> 
@@ -378,9 +372,6 @@ npm run db:reset # runs export NODE_ENV=development
 ## 💬 Kontakt
 
 <div align="center" style="display: inline_block">
-  <a href="https://rabeloguedes.github.io" target="_blank">
-    <img height="28rem" src="https://img.shields.io/badge/my_portfolio-3fc337?style=for-the-badge" target="_blank">
-  </a> 
   <a href="https://www.linkedin.com/in/al%C3%AA-emmanuel-rabelo-guedes/" target="_blank">
     <img height="28rem" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
   </a> 
